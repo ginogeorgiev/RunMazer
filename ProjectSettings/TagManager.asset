@@ -15,7 +15,7 @@ TagManager:
   - 
   - 
   - MiniMap
-  - 
+  - MiniMapSecondary
   - 
   - 
   - 
@@ -41,4 +41,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: FogOfWar
+    uniqueID: 735013399
     locked: 0
