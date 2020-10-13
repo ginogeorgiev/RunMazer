@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     // [SerializeField] private Game game;
     
     private Vector3 _inputVector;
+    
 
     void Update()
     {

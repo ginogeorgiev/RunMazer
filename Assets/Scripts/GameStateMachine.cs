@@ -1,4 +1,4 @@
-﻿﻿public class GameStateMachine
+﻿public class GameStateMachine
 {
     private static GameStateMachine _instance;
     private State _currentState = State.Playing;
