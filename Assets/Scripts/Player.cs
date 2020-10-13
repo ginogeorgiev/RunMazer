@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int moveSpeed = 20;    
     // [SerializeField] private Game game;
     
-    private Vector3 inputVector;
+    private Vector3 _inputVector;
     
 
     void Update()
@@ -17,12 +17,12 @@ public class Player : MonoBehaviour
         // Game is not playing, nothing to do
         if (GameStateMachine.GetInstance().GetState() != GameStateMachine.State.Playing) return;
         
-        inputVector = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, playerBody.velocity.y, Input.GetAxis("Vertical") * moveSpeed);
-        transform.LookAt(transform.position + new Vector3(inputVector.x, 0, inputVector.z));
+        _inputVector = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, playerBody.velocity.y, Input.GetAxis("Vertical") * moveSpeed);
+        transform.LookAt(transform.position + new Vector3(_inputVector.x, 0, _inputVector.z));
     }
 
     private void FixedUpdate()
     {
-        playerBody.velocity = inputVector;
+        playerBody.velocity = _inputVector;
     }
 }
