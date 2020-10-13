@@ -1,11 +1,11 @@
 ﻿public class GameStateMachine
 {
-    private static GameStateMachine _instance;
-    private State _currentState = State.Playing;
+    private static GameStateMachine instance;
+    private State currentState = State.Playing;
 
     public static GameStateMachine GetInstance()
     {
-        return _instance ?? (_instance = new GameStateMachine());
+        return instance ?? (instance = new GameStateMachine());
     }
 
     public enum State
@@ -17,14 +17,14 @@
 
     public State GetState()
     {
-        return _currentState;
+        return currentState;
     }
 
     public void SetState(State state)
     {
-        if (_currentState != state)
+        if (currentState != state)
         {
-            this._currentState = state;
+            this.currentState = state;
         }
     }
 
