@@ -1,7 +1,7 @@
 ﻿public class GameStateMachine
 {
     private static GameStateMachine _instance;
-    private State _currentState = State.Playing;
+    private State currentState = State.Playing;
 
     public static GameStateMachine GetInstance()
     {
@@ -17,14 +17,14 @@
 
     public State GetState()
     {
-        return _currentState;
+        return currentState;
     }
 
     public void SetState(State state)
     {
-        if (_currentState != state)
+        if (currentState != state)
         {
-            this._currentState = state;
+            this.currentState = state;
         }
     }
 
