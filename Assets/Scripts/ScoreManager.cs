@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     
     //Singleton stuff from last semester (GTAT; Zier)
     private static ScoreManager instance;
-    private int _fragmentScore;
+    private int fragmentScore;
     [SerializeField] private TextMeshProUGUI fragmentText;
     
     public static ScoreManager Instance
@@ -60,18 +60,18 @@ public class ScoreManager : MonoBehaviour
 
         instance = this;
         //DontDestroyOnLoad(gameObject);
-        _fragmentScore = 0;
-        fragmentText.text = "Fragment: " + _fragmentScore + "/4";
+        fragmentScore = 0;
+        fragmentText.text = "Fragment: " + fragmentScore + "/4";
     }
     
     //adds fragment
     public void AddFragmentScore()
     {
-        if (_fragmentScore >= 4)
+        if (fragmentScore >= 4)
         {
             return;
         }
-        _fragmentScore++;
-        fragmentText.text = "Fragment: " + _fragmentScore + "/4";
+        fragmentScore++;
+        fragmentText.text = "Fragment: " + fragmentScore + "/4";
     }
 }
