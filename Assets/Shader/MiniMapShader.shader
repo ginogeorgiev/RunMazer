@@ -44,19 +44,17 @@ Shader "Hidden/MiniMapShader"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = tex2D(mainTex, i.uv) + tex2D(fogOfWar, i.uv);
-                // just invert the colors
-                //col.rgb = 1 - col.rgb;
-                if(col.r >= 1.0f && col.g == 0.0f && col.b == 0.0f)
+                
+                fixed4 fogCol = tex2D(fogOfWar,i.uv);
+                fixed4 mainCol = tex2D(mainTex, i.uv);
+                
+                if(fogCol.r != 1.0f)
                 {
-                    //col.r == 0.0f;
-                    col.a = 0.0f;
+                    mainCol.rgb = (0,0,0);
+                    mainCol.a = 1.0f;
                 }
-                else
-                {
-                    col.a = 1.0f;
-                }
-                return col;
+               
+                return mainCol;
             }
             ENDCG
         }
