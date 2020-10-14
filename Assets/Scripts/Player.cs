@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     {
         switch (other.tag)
         {
-            case "Hub":
+            case "Base":
                 PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.IsEating);
                 break;
         }
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     {
         switch (other.tag)
         {
-            case "Hub":
+            case "Base":
                 PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.HasHunger);
                 break;
         }
