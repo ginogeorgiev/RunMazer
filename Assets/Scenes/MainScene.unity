@@ -1206,7 +1206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hungerBar: {fileID: 1792492988}
   hunger: 0
-  maxHunger: 50
+  maxHunger: 100
 --- !u!1 &1120385085
 GameObject:
   m_ObjectHideFlags: 0
