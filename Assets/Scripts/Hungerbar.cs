@@ -8,23 +8,26 @@ public class Hungerbar : MonoBehaviour
 {
     [SerializeField] private Slider hungerBar;
     [SerializeField] private Slider healthBar;
+    [SerializeField] private Slider sleepBar;
     [SerializeField] private float hunger;
     [SerializeField] private float health;
+    [SerializeField] private float sleep;
     [SerializeField] private float maxHunger = 100f;
     [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private float maxSleep = 100f;
 
     void Start()
     {
         hunger = maxHunger;
         health = maxHealth;
+        sleep = maxSleep;
     }
 
     void Update()
     {
-        var playerState = PlayerStateMachine.GetInstance().GetState();
-        
-        
-        if (hunger > 100) //is there min(),max() in C#?
+
+
+        if (hunger > 100) //TODO is there min(),max() equivalent in C#?
         {
             hunger = 100;
         }
@@ -43,47 +46,77 @@ public class Hungerbar : MonoBehaviour
         {
             health = 0;
         }
+        
+        if (sleep > 100)
+        {
+            sleep = 100;
+        }
+
+        if (sleep < 0)
+        {
+            sleep = 0;
+        }
 
         hungerBar.value = hunger;
         healthBar.value = health;
+        sleepBar.value = sleep;
 
-        switch (playerState)
+        var PlayerIsInBase = PlayerStateMachine.State.IsInBase;
+        var PlayerIsHungry = PlayerStateMachine.State.IsHungry;
+        var PlayerIsEating = PlayerStateMachine.State.IsEating;
+        var PlayerIsStarving = PlayerStateMachine.State.IsStarving;
+        var PlayerIsAwake = PlayerStateMachine.State.IsAwake;
+        var PlayerIsSleepy = PlayerStateMachine.State.IsSleepy;
+
+
+
+        if (PlayerStateMachine.GetInstance().CheckForState(PlayerIsInBase))
         {
-            case PlayerStateMachine.State.IsInBase:
-                    
-                hunger += 20f * Time.deltaTime;
-                Debug.Log("isInBase");
+            hunger += 20f * Time.deltaTime;
+            Debug.Log("isInBase");
 
-                health += 10f * Time.deltaTime;
-                Debug.Log("isHealing");
-                break;
-            
-            
-            case PlayerStateMachine.State.IsEating:
+            health += 10f * Time.deltaTime;
+            Debug.Log("isHealing");
 
-                hunger += 2f * Time.deltaTime;
-                Debug.Log("isEating");
-                
-                break;
-                    
-            
-            case PlayerStateMachine.State.HasHunger:
-                    
-                hunger -= 2f * Time.deltaTime;
-                Debug.Log("hasHunger");
+            sleep += 20f * Time.deltaTime;
+            Debug.Log("IsSleepy");
+        }
 
-                if (hunger < 0)
-                {
-                    PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.IsStarving);
-                }
-                break;
-            
-                
-            case PlayerStateMachine.State.IsStarving:
-                
-                health -= 3f * Time.deltaTime;
-                Debug.Log("isStarving");
-                break;
+
+
+        if (PlayerStateMachine.GetInstance().CheckForState(PlayerIsEating))
+        {
+            hunger += 2f * Time.deltaTime;
+            Debug.Log("isEating");
+        }
+
+        if (PlayerStateMachine.GetInstance().CheckForState(PlayerIsHungry))
+        {
+            hunger -= 2f * Time.deltaTime;
+            Debug.Log("isHungry");
+
+            if (hunger < 0)
+            {
+                PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsStarving);
+            }
+        }
+
+
+        if (PlayerStateMachine.GetInstance().CheckForState(PlayerIsStarving))
+        {
+            health -= 3f * Time.deltaTime;
+            Debug.Log("isStarving");
+        }
+
+        if (PlayerStateMachine.GetInstance().CheckForState(PlayerIsAwake))
+        {
+            sleep -= Time.deltaTime;
+            Debug.Log("isAwake");
+
+            if (sleep < 20f)
+            {
+                PlayerStateMachine.GetInstance().AddState(PlayerIsSleepy);
+            }
         }
 
     }

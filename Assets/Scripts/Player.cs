@@ -76,12 +76,13 @@ public class Player : MonoBehaviour
 
                 foodBuff += 1f;
                 runBuff += 10f;
-                
                 break;
+            
             case "Fragment":
                 Destroy(other.gameObject);
                 ScoreManager.Instance.AddFragmentScore();
                 break;
+            
             case "Exit":
                 if (ScoreManager.Instance.GetFragmentScore() == 4)
                 {
@@ -100,24 +101,46 @@ public class Player : MonoBehaviour
         switch (other.tag)
         {
             case "Base":
-                this.PlayerIsHungry();
+                this.PlayerLeavesBase();
                 break;
         }
+    }
+    
+    private void PlayerLeavesBase()
+    {
+        this.PlayerIsHungry();
+        this.PlayerIsAwake();
+        
+        PlayerStateMachine.GetInstance().RemoveState(PlayerStateMachine.State.IsInBase);
     }
 
     private void PlayerIsHungry()
     {
-        PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.HasHunger);
+        PlayerStateMachine.GetInstance().RemoveState(PlayerStateMachine.State.IsEating);
+        
+        PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsHungry);
     }
 
     private void PlayerIsEating()
     {
-        PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.IsEating);
+        PlayerStateMachine.GetInstance().RemoveState(PlayerStateMachine.State.IsHungry);
+        
+        PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsEating);
     }
 
     private void PlayerIsInBase()
     {
-        PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.IsInBase);
+        PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsInBase);
+    }
+
+    private void PlayerIsAwake()
+    {
+        PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsAwake);
+    }
+
+    private void PlayerIsSleepy()
+    {
+        PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsSleepy);
     }
 
     private void PlayerWonGame()
