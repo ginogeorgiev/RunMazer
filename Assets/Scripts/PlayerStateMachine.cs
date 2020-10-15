@@ -10,8 +10,10 @@
 
     public enum State
     {
+        IsInBase,
         HasHunger,
         IsEating,
+        IsStarving,
     }
 
     public State GetState()

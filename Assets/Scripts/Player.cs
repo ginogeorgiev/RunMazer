@@ -32,7 +32,20 @@ public class Player : MonoBehaviour
         switch (other.tag)
         {
             case "Base":
-                PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.IsEating);
+                this.PlayerIsInBase();
+                break;
+            
+            case "Food":
+                this.PlayerIsEating();
+                Invoke(nameof(PlayerIsHungry), 3f); //got to find better solution, multiple pick up doesn't accumulate
+                break;
+            
+            case "Caffein":
+                this.PlayerIsTrippin();
+                this.PlayerIsEating();
+                
+                Invoke(nameof(PlayerIsHungry), 1f);
+                Invoke(nameof(PlayerCalmsDown), 9f);
                 break;
         }
     }
@@ -42,8 +55,33 @@ public class Player : MonoBehaviour
         switch (other.tag)
         {
             case "Base":
-                PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.HasHunger);
+                this.PlayerIsHungry();
                 break;
         }
+    }
+
+    private void PlayerIsHungry()
+    {
+        PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.HasHunger);
+    }
+
+    private void PlayerIsEating()
+    {
+        PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.IsEating);
+    }
+
+    private void PlayerIsInBase()
+    {
+        PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.IsInBase);
+    }
+
+    private void PlayerIsTrippin()
+    {
+        moveSpeed = 40;
+    }
+
+    private void PlayerCalmsDown()
+    {
+        moveSpeed = 20;
     }
 }

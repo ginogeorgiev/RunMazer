@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Item
   - Base
+  - Food
+  - Caffein
   layers:
   - Default
   - TransparentFX

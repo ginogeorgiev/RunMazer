@@ -9,8 +9,12 @@ public class Fragment : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            ScoreManager.Instance.AddFragmentScore();
             Destroy(gameObject);
+
+            if (gameObject.CompareTag("Item"))
+            {
+                ScoreManager.Instance.AddFragmentScore();
+            }
         }
     }
 }
