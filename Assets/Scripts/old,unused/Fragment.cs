@@ -11,7 +11,7 @@ public class Fragment : MonoBehaviour
         {
             Destroy(gameObject);
 
-            if (gameObject.CompareTag("Item"))
+            if (gameObject.CompareTag("Fragment"))
             {
                 ScoreManager.Instance.AddFragmentScore();
             }

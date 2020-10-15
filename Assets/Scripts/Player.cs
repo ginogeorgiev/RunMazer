@@ -64,20 +64,33 @@ public class Player : MonoBehaviour
                 break;
             
             case "Food":
+                Destroy(other.gameObject);
                 this.PlayerIsEating();
-
                 foodBuff += 3f;
-                
                 break;
             
             case "Caffein":
-                
+                Destroy(other.gameObject);
                 this.PlayerIsRunning();
                 this.PlayerIsEating();
 
                 foodBuff += 1f;
                 runBuff += 10f;
                 
+                break;
+            case "Fragment":
+                Destroy(other.gameObject);
+                ScoreManager.Instance.AddFragmentScore();
+                break;
+            case "Exit":
+                if (ScoreManager.Instance.GetFragmentScore() == 4)
+                {
+                    this.PlayerWonGame();
+                    //destroy is temporary
+                    Destroy(gameObject);
+                    Debug.Log("you won");
+                    
+                }
                 break;
         }
     }
@@ -105,6 +118,11 @@ public class Player : MonoBehaviour
     private void PlayerIsInBase()
     {
         PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.IsInBase);
+    }
+
+    private void PlayerWonGame()
+    {
+        PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.FinishedGame);
     }
 
     private void PlayerIsRunning()

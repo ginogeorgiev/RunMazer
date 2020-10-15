@@ -74,4 +74,9 @@ public class ScoreManager : MonoBehaviour
         fragmentScore++;
         fragmentText.text = "Fragment: " + fragmentScore + "/4";
     }
+
+    public int GetFragmentScore()
+    {
+        return fragmentScore;
+    }
 }

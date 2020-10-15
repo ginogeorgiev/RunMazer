@@ -8,6 +8,8 @@ TagManager:
   - Base
   - Food
   - Caffein
+  - Fragment
+  - Exit
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden_MiniMapShader
+  m_Name: MiniMapShader
   m_Shader: {fileID: 4800000, guid: 6774ddfa51fbb9e4c8e1eb678fc061a7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
