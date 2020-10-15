@@ -12,9 +12,9 @@ public class Player : MonoBehaviour
 
     private Vector3 inputVector;
 
-    [SerializeField] private float runBuff = 0;
-    [SerializeField] private float foodBuff = 0;
-    
+    [SerializeField] private float foodBuff = 0f;
+    [SerializeField] private float runBuff = 0f;
+
 
     private void Update()
     {
@@ -24,6 +24,30 @@ public class Player : MonoBehaviour
         inputVector = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, playerBody.velocity.y,
             Input.GetAxis("Vertical") * moveSpeed);
         transform.LookAt(transform.position + new Vector3(inputVector.x, 0, inputVector.z));
+
+        if (foodBuff > 0)
+        {
+            foodBuff -= Time.deltaTime;
+
+            if (foodBuff < 0)
+            {
+                this.PlayerIsHungry();
+
+                foodBuff = 0;
+            }
+        }
+        
+        if (runBuff > 0)
+        {
+            runBuff -= Time.deltaTime;
+
+            if (runBuff < 0)
+            {
+                this.PlayerIsHungry();
+
+                runBuff = 0;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -44,18 +68,16 @@ public class Player : MonoBehaviour
 
                 foodBuff += 3f;
                 
-                Invoke(nameof(PlayerIsHungry), foodBuff); //got to find better solution, multiple pick up doesn't accumulate
                 break;
             
             case "Caffein":
+                
                 this.PlayerIsRunning();
                 this.PlayerIsEating();
 
                 foodBuff += 1f;
                 runBuff += 10f;
                 
-                Invoke(nameof(PlayerIsHungry),  foodBuff);
-                Invoke(nameof(PlayerCalmsDown), runBuff);
                 break;
         }
     }
@@ -90,7 +112,7 @@ public class Player : MonoBehaviour
         moveSpeed = 40;
     }
 
-    private void PlayerCalmsDown()
+    private void PlayerIsWalking()
     {
         moveSpeed = 20;
     }

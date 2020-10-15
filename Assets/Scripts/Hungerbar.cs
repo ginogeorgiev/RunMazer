@@ -61,7 +61,7 @@ public class Hungerbar : MonoBehaviour
             
             case PlayerStateMachine.State.IsEating:
 
-                hunger += 3f * Time.deltaTime;
+                hunger += 2f * Time.deltaTime;
                 Debug.Log("isEating");
                 
                 break;
