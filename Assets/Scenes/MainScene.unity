@@ -1254,6 +1254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1007303328}
   - component: {fileID: 1007303327}
+  - component: {fileID: 1007303330}
   - component: {fileID: 1007303326}
   - component: {fileID: 1007303325}
   - component: {fileID: 1007303324}
@@ -1340,8 +1341,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBody: {fileID: 1007303329}
   moveSpeed: 15
-  runBuff: 0
   foodBuff: 0
+  runBuff: 0
 --- !u!4 &1007303328
 Transform:
   m_ObjectHideFlags: 0
@@ -1373,6 +1374,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 2
+--- !u!114 &1007303330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007303323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b25e5f8b6417d40b94a216b40572da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hungerBar: {fileID: 1792492988}
+  healthBar: {fileID: 1024208080}
+  hunger: 0
+  health: 0
+  maxHunger: 100
+  maxHealth: 100
 --- !u!1 &1024208078
 GameObject:
   m_ObjectHideFlags: 0
