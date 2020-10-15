@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
 
     private void PlayerWonGame()
     {
-        PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.FinishedGame);
+        GameStateMachine.GetInstance().SetState(GameStateMachine.State.FinishedGame);
     }
 
     private void PlayerIsRunning()

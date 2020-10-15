@@ -14,7 +14,7 @@
         HasHunger,
         IsEating,
         IsStarving,
-        FinishedGame,
+        
     }
 
     public State GetState()
