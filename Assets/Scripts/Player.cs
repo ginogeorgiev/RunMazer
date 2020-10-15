@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 
             if (runBuff < 0)
             {
-                this.PlayerIsHungry();
+                this.PlayerIsWalking();
 
                 runBuff = 0;
             }
