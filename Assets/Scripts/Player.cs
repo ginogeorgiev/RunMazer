@@ -12,6 +12,10 @@ public class Player : MonoBehaviour
 
     private Vector3 inputVector;
 
+    [SerializeField] private float runBuff = 0;
+    [SerializeField] private float foodBuff = 0;
+    
+
     private void Update()
     {
         // Game is not playing, nothing to do
@@ -37,15 +41,21 @@ public class Player : MonoBehaviour
             
             case "Food":
                 this.PlayerIsEating();
-                Invoke(nameof(PlayerIsHungry), 3f); //got to find better solution, multiple pick up doesn't accumulate
+
+                foodBuff += 3f;
+                
+                Invoke(nameof(PlayerIsHungry), foodBuff); //got to find better solution, multiple pick up doesn't accumulate
                 break;
             
             case "Caffein":
-                this.PlayerIsTrippin();
+                this.PlayerIsRunning();
                 this.PlayerIsEating();
+
+                foodBuff += 1f;
+                runBuff += 10f;
                 
-                Invoke(nameof(PlayerIsHungry), 1f);
-                Invoke(nameof(PlayerCalmsDown), 9f);
+                Invoke(nameof(PlayerIsHungry),  foodBuff);
+                Invoke(nameof(PlayerCalmsDown), runBuff);
                 break;
         }
     }
@@ -75,7 +85,7 @@ public class Player : MonoBehaviour
         PlayerStateMachine.GetInstance().SetState(PlayerStateMachine.State.IsInBase);
     }
 
-    private void PlayerIsTrippin()
+    private void PlayerIsRunning()
     {
         moveSpeed = 40;
     }
