@@ -68,11 +68,13 @@ public class ScoreManager : MonoBehaviour
     //adds fragment
     public void AddFragmentScore()
     {
+        
         if (fragmentScore >= 4)
         {
             return;
         }
         fragmentScore++;
+        Debug.Log(fragmentScore);
         fragmentText.text = "Fragment: " + fragmentScore + "/4";
     }
 

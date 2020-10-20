@@ -52,17 +52,17 @@ public class Hungerbar : MonoBehaviour
             case PlayerStateMachine.State.IsInBase:
                     
                 hunger += 20f * Time.deltaTime;
-                Debug.Log("isInBase");
+                //Debug.Log("isInBase");
 
                 health += 10f * Time.deltaTime;
-                Debug.Log("isHealing");
+                //Debug.Log("isHealing");
                 break;
             
             
             case PlayerStateMachine.State.IsEating:
 
                 hunger += 2f * Time.deltaTime;
-                Debug.Log("isEating");
+                //Debug.Log("isEating");
                 
                 break;
                     
@@ -70,7 +70,7 @@ public class Hungerbar : MonoBehaviour
             case PlayerStateMachine.State.HasHunger:
                     
                 hunger -= 2f * Time.deltaTime;
-                Debug.Log("hasHunger");
+                //Debug.Log("hasHunger");
 
                 if (hunger < 0)
                 {
@@ -82,7 +82,7 @@ public class Hungerbar : MonoBehaviour
             case PlayerStateMachine.State.IsStarving:
                 
                 health -= 3f * Time.deltaTime;
-                Debug.Log("isStarving");
+                //Debug.Log("isStarving");
                 break;
         }
 

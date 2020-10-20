@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7967081627404150443}
   - component: {fileID: 7967081627404150442}
   m_Layer: 0
-  m_Name: MiniMapCameraPrefab
+  m_Name: MiniMapCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,11 +59,11 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 500
+  orthographic size: 255
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 23
+    m_Bits: 1047
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: b05b50f74924b4946b342a2408daf5d8, type: 2}
   m_TargetDisplay: 0
