@@ -45,6 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 51, y: 51}
   sizeBase: {x: 7, y: 7}
+  sizeCell: 10
+  sizeWall: 3
   cellPrefab: {fileID: -5741930653846233985, guid: 625688f7e16d99d4b8270d86d4a1b420,
     type: 3}
   baseCellPrefab: {fileID: -9000039982378923395, guid: 6ff4716703f63c142a882967306aef4a,

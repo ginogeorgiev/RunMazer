@@ -6,6 +6,8 @@ public class Maze : MonoBehaviour
 {
     public Vector2Int size;
     public Vector2Int sizeBase;
+    public int sizeCell;
+    public int sizeWall;
     public MazeCell cellPrefab;
     public MazeCellBase baseCellPrefab;
     public MazeCellPassage passagePrefab;
@@ -100,9 +102,9 @@ public class Maze : MonoBehaviour
         cell.name = "Maze Cell" + x + "," + y;
 
         cell.transform.parent = transform;
-        //TODO: create size modifier for cells (atm 5x5 big)
+        cell.transform.GetChild(0).localScale = new Vector3(sizeCell*0.1f,1,sizeCell*0.1f);
         cell.transform.localPosition =
-            new Vector3((x - size.x * 0.5f) * 5f, -1f, (y - size.y * 0.5f) * 5f);
+            new Vector3((x - size.x * 0.5f) * sizeCell, -1f, (y - size.y * 0.5f) * sizeCell);
         cells[x, y] = cell;
     }
 
@@ -116,6 +118,8 @@ public class Maze : MonoBehaviour
     {
         MazeCellWall wall = Instantiate(wallPrefab) as MazeCellWall;
         wall.Initialize(cell, otherCell, direction);
+        wall.transform.GetChild(0).localScale = new Vector3(1, sizeWall, sizeCell + 1);
+        wall.transform.GetChild(0).localPosition = new Vector3(sizeCell*0.5f,1.5f,0);
     }
 
     private void Walk(int path)
