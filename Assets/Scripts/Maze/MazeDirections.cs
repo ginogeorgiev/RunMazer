@@ -7,13 +7,9 @@ using Random = UnityEngine.Random;
 public static class MazeDirections
 {
 
+    //************ UTILITY METHODS REGARDING DIRECTIONS ************//
+    
     public const int Count = 4;
-
-    public static MazeDirection RandomValue {
-        get {
-            return (MazeDirection)Random.Range(0, Count);
-        }
-    }
     
     private static Vector2Int[] vectors = {
         new Vector2Int(1,0),
