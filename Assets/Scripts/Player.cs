@@ -31,23 +31,19 @@ public class Player : MonoBehaviour
 
             if (foodBuff < 0)
             {
-                this.PlayerIsHungry();
+                this.PlayerStopsEating();
 
                 foodBuff = 0;
             }
         }
-        
-        if (runBuff > 0)
-        {
-            runBuff -= Time.deltaTime;
 
-            if (runBuff < 0)
-            {
-                this.PlayerIsWalking();
+        if (!(runBuff > 0)) return;
+        runBuff -= Time.deltaTime;
 
-                runBuff = 0;
-            }
-        }
+        if (!(runBuff < 0)) return;
+        this.PlayerIsWalking();
+
+        runBuff = 0;
     }
 
     private void FixedUpdate()
@@ -106,48 +102,38 @@ public class Player : MonoBehaviour
         }
     }
     
-    private void PlayerLeavesBase()
-    {
-        this.PlayerIsHungry();
-        this.PlayerIsAwake();
-        
-        PlayerStateMachine.GetInstance().RemoveState(PlayerStateMachine.State.IsInBase);
-    }
-
-    private void PlayerIsHungry()
-    {
-        PlayerStateMachine.GetInstance().RemoveState(PlayerStateMachine.State.IsEating);
-        
-        PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsHungry);
-    }
-
-    private void PlayerIsEating()
-    {
-        PlayerStateMachine.GetInstance().RemoveState(PlayerStateMachine.State.IsHungry);
-        
-        PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsEating);
-    }
-
+    
     private void PlayerIsInBase()
     {
         PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsInBase);
     }
+    
+    private void PlayerLeavesBase()
+    {
+        PlayerStateMachine.GetInstance().RemoveState(PlayerStateMachine.State.IsInBase);
+    }
+    
+
+    private void PlayerIsEating()
+    {
+        PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsEating);
+    }
+
+    private void PlayerStopsEating()
+    {
+        PlayerStateMachine.GetInstance().RemoveState(PlayerStateMachine.State.IsEating);
+    }
+
+    private void PlayerIsTired()
+    {
+        PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsTired);
+    }
 
     private void PlayerIsAwake()
     {
-        PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsAwake);
+        PlayerStateMachine.GetInstance().RemoveState(PlayerStateMachine.State.IsTired);
     }
-
-    private void PlayerIsSleepy()
-    {
-        PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsSleepy);
-    }
-
-    private void PlayerWonGame()
-    {
-        GameStateMachine.GetInstance().SetState(GameStateMachine.State.FinishedGame);
-    }
-
+    
     private void PlayerIsRunning()
     {
         moveSpeed = 40;
@@ -156,5 +142,10 @@ public class Player : MonoBehaviour
     private void PlayerIsWalking()
     {
         moveSpeed = 20;
+    }
+
+    private void PlayerWonGame()
+    {
+        GameStateMachine.GetInstance().SetState(GameStateMachine.State.FinishedGame);
     }
 }

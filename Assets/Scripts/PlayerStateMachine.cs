@@ -14,11 +14,9 @@ public class PlayerStateMachine
     public enum State
     {
         IsInBase,
-        IsHungry,
         IsEating,
         IsStarving,
-        IsAwake,
-        IsSleepy,
+        IsTired,
     }
 
     public bool CheckForState(State state)

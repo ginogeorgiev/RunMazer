@@ -62,11 +62,9 @@ public class Hungerbar : MonoBehaviour
         sleepBar.value = sleep;
 
         var PlayerIsInBase = PlayerStateMachine.State.IsInBase;
-        var PlayerIsHungry = PlayerStateMachine.State.IsHungry;
         var PlayerIsEating = PlayerStateMachine.State.IsEating;
         var PlayerIsStarving = PlayerStateMachine.State.IsStarving;
-        var PlayerIsAwake = PlayerStateMachine.State.IsAwake;
-        var PlayerIsSleepy = PlayerStateMachine.State.IsSleepy;
+        var PlayerIsTired = PlayerStateMachine.State.IsTired;
 
 
 
@@ -83,22 +81,29 @@ public class Hungerbar : MonoBehaviour
         }
 
 
-
-        if (PlayerStateMachine.GetInstance().CheckForState(PlayerIsEating))
-        {
-            hunger += 2f * Time.deltaTime;
-            Debug.Log("isEating");
-        }
-
-        if (PlayerStateMachine.GetInstance().CheckForState(PlayerIsHungry))
+        if (!(PlayerStateMachine.GetInstance().CheckForState(PlayerIsInBase) ||
+            PlayerStateMachine.GetInstance().CheckForState(PlayerIsEating)))
         {
             hunger -= 2f * Time.deltaTime;
             Debug.Log("isHungry");
 
             if (hunger < 0)
-            {
+            { 
                 PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsStarving);
             }
+
+            sleep -= Time.deltaTime;
+
+            if (sleep < 20)
+            { 
+                PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsTired); 
+            }
+        }
+
+        if (PlayerStateMachine.GetInstance().CheckForState(PlayerIsEating))
+        {
+            hunger += 2f * Time.deltaTime;
+            Debug.Log("isEating");
         }
 
 
@@ -107,17 +112,5 @@ public class Hungerbar : MonoBehaviour
             health -= 3f * Time.deltaTime;
             Debug.Log("isStarving");
         }
-
-        if (PlayerStateMachine.GetInstance().CheckForState(PlayerIsAwake))
-        {
-            sleep -= Time.deltaTime;
-            Debug.Log("isAwake");
-
-            if (sleep < 20f)
-            {
-                PlayerStateMachine.GetInstance().AddState(PlayerIsSleepy);
-            }
-        }
-
     }
 }
