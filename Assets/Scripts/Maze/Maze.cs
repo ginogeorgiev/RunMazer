@@ -58,12 +58,25 @@ public class Maze : MonoBehaviour
         currentCell = getCell((size.x - sizeBase.x) / 2 + sizeBase.x - 1, size.y / 2);
         Walk(1);
 
-        for (int i = 0; i < size.x*size.y/2; i++)
+        for (int i = 0; i < size.x * size.y / 2; i++)
         {
             currentCell = cells[Random.Range(0, size.x - 1), Random.Range(0, size.y - 1)];
             if (currentCell.IsVisited() && !(currentCell is MazeCellBase))
             {
                 Walk(currentCell.getPath());
+            }
+        }
+
+        for (int x = 0; x < size.x; x++)
+        {
+            for (int y = 0; y < size.y; y++)
+            {
+                currentCell = cells[x,y];
+                if (!currentCell.IsVisited())
+                {
+                    currentCell.SetVisited(true);
+                    Walk(5);
+                }
             }
         }
     }
@@ -104,7 +117,7 @@ public class Maze : MonoBehaviour
         MazeCellWall wall = Instantiate(wallPrefab) as MazeCellWall;
         wall.Initialize(cell, otherCell, direction);
     }
-    
+
     private void Walk(int path)
     {
         List<MazeDirection> unvisitedNeighbors = findUnvisitedNeighbors();
