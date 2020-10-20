@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class ScoreManager : MonoBehaviour
     private static ScoreManager instance;
     private int fragmentScore;
     [SerializeField] private TextMeshProUGUI fragmentText;
-    
+
     public static ScoreManager Instance
     {
         get

@@ -6,10 +6,11 @@ public class Maze : MonoBehaviour
 {
     public Vector2Int size;
     public Vector2Int sizeBase;
-    public int sizeCell;
-    public int sizeWall;
+    public float sizeCell;
+    public float sizeWall;
     public MazeCell cellPrefab;
     public MazeCellBase baseCellPrefab;
+    public GameObject basePrefab;
     public MazeCellPassage passagePrefab;
     public MazeCellWall wallPrefab;
 
@@ -28,6 +29,8 @@ public class Maze : MonoBehaviour
 
     public void Generate()
     {
+        GameObject baseObject = Instantiate(basePrefab) as GameObject;
+        baseObject.transform.localScale = new Vector3(sizeCell*sizeBase.x,3,sizeCell*sizeBase.y);
         cells = new MazeCell[size.x, size.y];
         for (int x = 0; x < size.x; x++)
         {
@@ -73,7 +76,7 @@ public class Maze : MonoBehaviour
         {
             for (int y = 0; y < size.y; y++)
             {
-                currentCell = cells[x,y];
+                currentCell = cells[x, y];
                 if (!currentCell.IsVisited())
                 {
                     currentCell.SetVisited(true);
@@ -102,9 +105,9 @@ public class Maze : MonoBehaviour
         cell.name = "Maze Cell" + x + "," + y;
 
         cell.transform.parent = transform;
-        cell.transform.GetChild(0).localScale = new Vector3(sizeCell*0.1f,1,sizeCell*0.1f);
+        cell.transform.GetChild(0).localScale = new Vector3(sizeCell * 0.1f, 1, sizeCell * 0.1f);
         cell.transform.localPosition =
-            new Vector3((x - size.x * 0.5f) * sizeCell, -1f, (y - size.y * 0.5f) * sizeCell);
+            new Vector3(sizeCell * (x - size.x / 2), -1f, sizeCell * (y - size.y / 2));
         cells[x, y] = cell;
     }
 
@@ -119,7 +122,7 @@ public class Maze : MonoBehaviour
         MazeCellWall wall = Instantiate(wallPrefab) as MazeCellWall;
         wall.Initialize(cell, otherCell, direction);
         wall.transform.GetChild(0).localScale = new Vector3(1, sizeWall, sizeCell + 1);
-        wall.transform.GetChild(0).localPosition = new Vector3(sizeCell*0.5f,1.5f,0);
+        wall.transform.GetChild(0).localPosition = new Vector3(sizeCell * 0.5f, 1.5f, 0);
     }
 
     private void Walk(int path)

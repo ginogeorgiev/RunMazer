@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851282007179865757}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 500, y: 0, z: 500}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -50,6 +50,8 @@ MonoBehaviour:
   cellPrefab: {fileID: -5741930653846233985, guid: 625688f7e16d99d4b8270d86d4a1b420,
     type: 3}
   baseCellPrefab: {fileID: -9000039982378923395, guid: 6ff4716703f63c142a882967306aef4a,
+    type: 3}
+  basePrefab: {fileID: 7826093335941775738, guid: 57f861e98d973e04f8bde1fc5e0631b9,
     type: 3}
   passagePrefab: {fileID: -3765292136972248005, guid: 49bdf2bf437c07245a4e69681a34ea48,
     type: 3}
