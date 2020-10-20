@@ -4,6 +4,7 @@ Shader "Hidden/MiniMapShader"
     {
         mainTex ("MapTexture", 2D) = "white" {}
         fogOfWar ("FogOfWar", 2D) = "white" {}
+        
     }
     SubShader
     {
@@ -44,13 +45,15 @@ Shader "Hidden/MiniMapShader"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                
+                //the FogOfWar mask shows us where we already were. red marks the path 
                 fixed4 fogCol = tex2D(fogOfWar,i.uv);
                 fixed4 mainCol = tex2D(mainTex, i.uv);
                 
+                //trail
                 if(fogCol.r != 1.0f)
                 {
-                    mainCol.rgb = (0,0,0);
+                    
+                    mainCol.rgb = float3(0.0f,0.0f,0.0f);
                     mainCol.a = 1.0f;
                 }
                
