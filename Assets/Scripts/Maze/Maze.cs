@@ -6,8 +6,11 @@ public class Maze : MonoBehaviour
 {
     public Vector2Int size;
     public Vector2Int sizeBase;
+    public float sizeCell;
+    public float sizeWall;
     public MazeCell cellPrefab;
     public MazeCellBase baseCellPrefab;
+    public GameObject basePrefab;
     public MazeCellPassage passagePrefab;
     public MazeCellWall wallPrefab;
 
@@ -26,6 +29,8 @@ public class Maze : MonoBehaviour
 
     public void Generate()
     {
+        GameObject baseObject = Instantiate(basePrefab) as GameObject;
+        baseObject.transform.localScale = new Vector3(sizeCell*sizeBase.x,3,sizeCell*sizeBase.y);
         cells = new MazeCell[size.x, size.y];
         for (int x = 0; x < size.x; x++)
         {
@@ -58,12 +63,25 @@ public class Maze : MonoBehaviour
         currentCell = getCell((size.x - sizeBase.x) / 2 + sizeBase.x - 1, size.y / 2);
         Walk(1);
 
-        for (int i = 0; i < size.x*size.y/2; i++)
+        for (int i = 0; i < size.x * size.y / 2; i++)
         {
             currentCell = cells[Random.Range(0, size.x - 1), Random.Range(0, size.y - 1)];
             if (currentCell.IsVisited() && !(currentCell is MazeCellBase))
             {
                 Walk(currentCell.getPath());
+            }
+        }
+
+        for (int x = 0; x < size.x; x++)
+        {
+            for (int y = 0; y < size.y; y++)
+            {
+                currentCell = cells[x, y];
+                if (!currentCell.IsVisited())
+                {
+                    currentCell.SetVisited(true);
+                    Walk(5);
+                }
             }
         }
     }
@@ -87,9 +105,9 @@ public class Maze : MonoBehaviour
         cell.name = "Maze Cell" + x + "," + y;
 
         cell.transform.parent = transform;
-        //TODO: create size modifier for cells (atm 5x5 big)
+        cell.transform.GetChild(0).localScale = new Vector3(sizeCell * 0.1f, 1, sizeCell * 0.1f);
         cell.transform.localPosition =
-            new Vector3((x - size.x * 0.5f) * 5f, -1f, (y - size.y * 0.5f) * 5f);
+            new Vector3(sizeCell * (x - size.x / 2), -1f, sizeCell * (y - size.y / 2));
         cells[x, y] = cell;
     }
 
@@ -103,8 +121,10 @@ public class Maze : MonoBehaviour
     {
         MazeCellWall wall = Instantiate(wallPrefab) as MazeCellWall;
         wall.Initialize(cell, otherCell, direction);
+        wall.transform.GetChild(0).localScale = new Vector3(1, sizeWall, sizeCell + 1);
+        wall.transform.GetChild(0).localPosition = new Vector3(sizeCell * 0.5f, 1.5f, 0);
     }
-    
+
     private void Walk(int path)
     {
         List<MazeDirection> unvisitedNeighbors = findUnvisitedNeighbors();
