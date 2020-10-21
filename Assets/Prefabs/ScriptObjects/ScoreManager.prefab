@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552404bd8368bb84a8c00d2d2ba5d86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxFragments: 4
   fragmentText: {fileID: 3490235094125024663, guid: 4ada2b8766bf9d64d9fe4d8425530ebd,
     type: 3}
-  testText: {fileID: 0}
