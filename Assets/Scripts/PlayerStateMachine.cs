@@ -4,7 +4,7 @@ using System.Linq;
 public class PlayerStateMachine
 {
     private static PlayerStateMachine instance;
-    private List<State> currentState = new List<State>();
+    private State currentState = State.IsIdle;
 
     public static PlayerStateMachine GetInstance()
     {
@@ -13,31 +13,21 @@ public class PlayerStateMachine
 
     public enum State
     {
-        IsInBase,
-        IsEating,
-        IsStarving,
-        IsTired,
+        IsIdle,
+        IsWalking,
+        IsRunning,
+        IsTripping,
+        IsJiggiling,
     }
 
-    public bool CheckForState(State state)
+    public State getState()
     {
-        return currentState.Any(t => t == state);
+        return currentState;
     }
 
-    public void AddState(State state)
+    public void changeState(State state)
     {
-        if (!this.CheckForState(state))
-        {
-            this.currentState.Add(state);
-        }
-    }
-
-    public void RemoveState(State state)
-    {
-        if (this.CheckForState(state))
-        {
-            this.currentState.Remove(state);
-        }
+        this.currentState = state;
     }
 
 }

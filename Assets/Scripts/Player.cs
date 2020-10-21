@@ -7,43 +7,78 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Rigidbody playerBody;
 
-    [SerializeField] private int moveSpeed = 20;
+    [SerializeField] private int moveSpeed;
+
+    [SerializeField] private PlayerStateMachine.State playerState;
     // [SerializeField] private Game game;
 
     private Vector3 inputVector;
-
-    [SerializeField] private float foodBuff = 0f;
-    [SerializeField] private float runBuff = 0f;
-
+    
 
     private void Update()
     {
         // Game is not playing, nothing to do
         if (GameStateMachine.GetInstance().GetState() != GameStateMachine.State.Playing) return;
-
+        
         inputVector = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, playerBody.velocity.y,
             Input.GetAxis("Vertical") * moveSpeed);
         transform.LookAt(transform.position + new Vector3(inputVector.x, 0, inputVector.z));
+        
+        playerState = PlayerStateMachine.GetInstance().getState();
 
-        if (foodBuff > 0)
+
+        switch (playerState)
         {
-            foodBuff -= Time.deltaTime;
+            case PlayerStateMachine.State.IsIdle:
+                if (Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") != 0)
+                {
+                    if (Input.GetKey(KeyCode.LeftShift))
+                    {
+                        playerState = PlayerStateMachine.State.IsRunning;
+                        
+                        break;
+                    }
+                    playerState = PlayerStateMachine.State.IsWalking;
+                }
+                break;
+            
+            case PlayerStateMachine.State.IsWalking:
+                if (Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") == 0)
+                {
+                    playerState = PlayerStateMachine.State.IsIdle;
+                    
+                    break;
+                }
+                else if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    playerState = PlayerStateMachine.State.IsRunning;
+                }
 
-            if (foodBuff < 0)
-            {
-                this.PlayerStopsEating();
+                moveSpeed = 20;
+                break;
+            
+            case PlayerStateMachine.State.IsRunning:
+                if (Input.GetAxis("Horizontal") + Input.GetAxis("Vertical") == 0)
+                {
+                    playerState = PlayerStateMachine.State.IsIdle;
+                    
+                    break;
+                }
+                else if (!Input.GetKey(KeyCode.LeftShift))
+                {
+                    playerState = PlayerStateMachine.State.IsWalking;
+                    
+                }
 
-                foodBuff = 0;
-            }
+                moveSpeed = 25;
+                break;
+            
+            case PlayerStateMachine.State.IsTripping:
+                moveSpeed = 30;
+                break;
         }
-
-        if (!(runBuff > 0)) return;
-        runBuff -= Time.deltaTime;
-
-        if (!(runBuff < 0)) return;
-        this.PlayerIsWalking();
-
-        runBuff = 0;
+        
+        PlayerStateMachine.GetInstance().changeState(playerState);
     }
 
     private void FixedUpdate()
@@ -55,25 +90,6 @@ public class Player : MonoBehaviour
     {
         switch (other.tag)
         {
-            case "Base":
-                this.PlayerIsInBase();
-                break;
-            
-            case "Food":
-                Destroy(other.gameObject);
-                this.PlayerIsEating();
-                foodBuff += 3f;
-                break;
-            
-            case "Caffein":
-                Destroy(other.gameObject);
-                this.PlayerIsRunning();
-                this.PlayerIsEating();
-
-                foodBuff += 1f;
-                runBuff += 10f;
-                break;
-            
             case "Fragment":
                 Destroy(other.gameObject);
                 ScoreManager.Instance.AddFragmentScore();
@@ -94,54 +110,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        switch (other.tag)
-        {
-            case "Base":
-                this.PlayerLeavesBase();
-                break;
-        }
-    }
-    
-    
-    private void PlayerIsInBase()
-    {
-        PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsInBase);
-    }
-    
-    private void PlayerLeavesBase()
-    {
-        PlayerStateMachine.GetInstance().RemoveState(PlayerStateMachine.State.IsInBase);
-    }
-    
-
-    private void PlayerIsEating()
-    {
-        PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsEating);
-    }
-
-    private void PlayerStopsEating()
-    {
-        PlayerStateMachine.GetInstance().RemoveState(PlayerStateMachine.State.IsEating);
-    }
-
-    private void PlayerIsTired()
-    {
-        PlayerStateMachine.GetInstance().AddState(PlayerStateMachine.State.IsTired);
-    }
-
-    private void PlayerIsAwake()
-    {
-        PlayerStateMachine.GetInstance().RemoveState(PlayerStateMachine.State.IsTired);
-    }
-    
-    private void PlayerIsRunning()
-    {
-        moveSpeed = 40;
-    }
-
-    private void PlayerIsWalking()
-    {
-        moveSpeed = 20;
+        
     }
 
     private void PlayerWonGame()

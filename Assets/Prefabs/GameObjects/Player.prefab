@@ -173,12 +173,13 @@ GameObject:
   - component: {fileID: 4766536777716320404}
   - component: {fileID: 4766536777716320427}
   - component: {fileID: 4766536777716320406}
+  - component: {fileID: 7970862014625687252}
   - component: {fileID: 4766536777716320426}
   - component: {fileID: 4766536777716320425}
   - component: {fileID: 4766536777716320424}
   - component: {fileID: 4766536777716320405}
   m_Layer: 0
-  m_Name: PlayerPrefab
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,10 +232,20 @@ MonoBehaviour:
     type: 3}
   healthBar: {fileID: 1376836549759139354, guid: e6ad8ae1e937fca4b9ecc2df262576d2,
     type: 3}
-  hunger: 0
-  health: 0
-  maxHunger: 100
-  maxHealth: 100
+  sleepBar: {fileID: 0}
+--- !u!114 &7970862014625687252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4766536777716320431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 223aed9b3581468ba977baf51a193524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hungerValue: 0
 --- !u!33 &4766536777716320426
 MeshFilter:
   m_ObjectHideFlags: 0
