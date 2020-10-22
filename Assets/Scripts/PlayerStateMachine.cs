@@ -16,7 +16,7 @@ public class PlayerStateMachine
         IsIdle,
         IsWalking,
         IsRunning,
-        IsTripping,
+        CaffeineRush,
         IsJiggiling,
     }
 

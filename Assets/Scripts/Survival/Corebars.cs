@@ -16,7 +16,7 @@ public class Corebars : MonoBehaviour
 
     private Core hunger = Hunger.GetInstance();
     private Core health = Health.GetInstance();
-    private Core stamina = Stamina.getInstance();
+    private Core stamina = Stamina.GetInstance();
 
     private bool isInBase;
 
@@ -34,22 +34,32 @@ public class Corebars : MonoBehaviour
         healthBar.value = health.CurrentValue;
         staminaBar.value = stamina.CurrentValue;
 
+        
+        //when in base all cores get refilled
         if (isInBase)
         {
-            hunger.BuffValue(Time.deltaTime);
-            health.BuffValue(Time.deltaTime);
-            stamina.BuffValue(Time.deltaTime);
+            hunger.BuffValue(Time.deltaTime * (hunger.MaxValue - hunger.CurrentValue));
+            health.BuffValue(Time.deltaTime * (health.MaxValue - health.CurrentValue));
+            stamina.BuffValue(Time.deltaTime * (stamina.MaxValue - stamina.CurrentValue));
 
             return;
         }
         
-        hunger.DebuffValue(Time.deltaTime);
+        //hunger always gets diminished when not in base
+        hunger.DebuffValue(Time.deltaTime * 3f);
 
-        if (hunger.IsEmpty) health.DebuffValue(Time.deltaTime);
+        
+        if (hunger.IsEmpty) health.DebuffValue(Time.deltaTime * 5f);
+        
+        //stamina gets diminished when running
+        //or when stamina is depleted and shift is still held down
         if (PlayerStateMachine.GetInstance().getState()
-            == PlayerStateMachine.State.IsRunning)
+            == PlayerStateMachine.State.IsRunning ||
+            (PlayerStateMachine.GetInstance().getState()
+            == PlayerStateMachine.State.IsWalking &&
+            Input.GetKey(KeyCode.LeftShift)))
         {
-            stamina.DebuffValue(Time.deltaTime);
+            stamina.DebuffValue(Time.deltaTime * 10f);
         }
         else{ stamina.BuffValue(Time.deltaTime); }
 
@@ -63,8 +73,9 @@ public class Corebars : MonoBehaviour
                 this.isInBase = true;
                 break;
             
+            //hunger is increased by given amount
             case "Food":
-                hunger.BuffValue(1f);
+                hunger.BuffValue(10f);
                 break;
         }
     }

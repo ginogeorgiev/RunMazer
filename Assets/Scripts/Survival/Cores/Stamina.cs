@@ -10,7 +10,7 @@
         private bool isEmpty;
 
 
-        public static Stamina getInstance()
+        public static Stamina GetInstance()
         {
             return instance ?? (instance = new Stamina());
         }
@@ -32,30 +32,27 @@
             get => isEmpty; 
             set => isEmpty = value;
         }
-        public void Init(float maxValue)
+        public void Init(float value)
         {
-            this.maxValue = this.CurrentValue = maxValue;
+            this.maxValue = this.CurrentValue = value;
         }
 
-        public void BuffValue(float value)
+        public void BuffValue(float buff)
         {
-            float buff = value * 15f;
-            
+            //ceiling for currentValue
             if (this.currentValue + buff > maxValue)
             {
                 this.currentValue = maxValue;
                 return;
             }
 
-            this.isEmpty = false;
+            if(this.isEmpty) this.isEmpty = false;
             
             this.currentValue += buff;
         }
 
-        public void DebuffValue(float value)
+        public void DebuffValue(float debuff)
         {
-            float debuff = value * 10f;
-            
             if (this.currentValue - debuff  < 0)
             {
                 this.currentValue = 0;
@@ -70,7 +67,7 @@
 
         public void OnEmpty()
         {
-            
+            this.isEmpty = true;
         }
     }
 }

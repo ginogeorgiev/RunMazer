@@ -36,30 +36,27 @@ namespace Survival
             set => isEmpty = value;
         }
 
-        public void Init(float maxValue)
+        public void Init(float value)
         {
-            this.maxValue = this.currentValue = maxValue;
+            this.maxValue = this.currentValue = value;
         }
 
-        public void BuffValue(float value)
+        public void BuffValue(float buff)
         {
-            float buff = value * 5f;
-            
+            //ceiling for currentValue
             if (this.currentValue + buff > maxValue)
             {
                 this.currentValue = maxValue;
                 return;
             }
 
-            this.isEmpty = false;
+            if(this.isEmpty) this.isEmpty = false;
             
             this.currentValue += buff;
         }
 
-        public void DebuffValue(float value)
+        public void DebuffValue(float debuff)
         {
-            float debuff = value * 5f;
-            
             if (this.currentValue - debuff  < 0)
             {
                 this.currentValue = 0;
@@ -72,9 +69,10 @@ namespace Survival
             this.currentValue -= debuff;
         }
 
+        //TODO implement game over state on empty
         public void OnEmpty()
         {
-            
+            this.isEmpty = true;
         }
     }
 }
