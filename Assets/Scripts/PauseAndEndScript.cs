@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PauseScript : MonoBehaviour
+public class PauseAndEndScript : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject endPanel;
+    private TextMeshProUGUI endText;
+    private Image bgImg;
     void Start()
     {
         pausePanel.SetActive(false);
+        endPanel.SetActive(false);
+        endText = endPanel.GetComponentInChildren<TextMeshProUGUI>();
+        bgImg = endPanel.GetComponent<Image>();
     }
 
     void Update()
@@ -23,6 +31,15 @@ public class PauseScript : MonoBehaviour
             {
                 ContinueGame();
             }
+        }
+
+        if (GameStateMachine.GetInstance().GetState() == GameStateMachine.State.GameOver)
+        {
+            YouLose();
+        }
+        else if (GameStateMachine.GetInstance().GetState() == GameStateMachine.State.GameWon)
+        {
+            YouWin();
         }
     }
         //if scripts still work while timescale is 0, disable and enable them here 
@@ -45,5 +62,21 @@ public class PauseScript : MonoBehaviour
                 pausePanel.SetActive(false);
                 GameStateMachine.GetInstance().SetState(GameStateMachine.State.Playing);
             }
+        }
+
+        private void YouLose()
+        {
+            Time.timeScale = 0;
+            endText.text = "You Lose!";
+            bgImg.color = new Color(0,0,1,0.5f);
+            endPanel.SetActive(true);
+        }
+
+        private void YouWin()
+        {
+            Time.timeScale = 0;
+            endText.text = "You Win!";
+            bgImg.color = new Color(1,0,0,0.5f);
+            endPanel.SetActive(true);
         }
 }
