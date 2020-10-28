@@ -13,9 +13,18 @@ public class Player : MonoBehaviour
 
     [SerializeField] private PlayerStateMachine.State playerState;
 
+    [SerializeField] private float foodBuff;
+
+
     //for time sensitive states (until now: IsIdle and CaffeineRush)
-    [SerializeField] float timeInState = 0;
+    [SerializeField] private float timeInState = 0;
     // [SerializeField] private Game game;
+
+    [SerializeField] private int moveSpeedWalking = 15;
+    [SerializeField] private int moveSpeedRunning = 20;
+    [SerializeField] private int moveSpeedCaffeine = 25;
+
+    [SerializeField] private float stateChangeDelay = 5f;
 
     private Vector3 inputVector;
     
@@ -30,54 +39,21 @@ public class Player : MonoBehaviour
         transform.LookAt(transform.position + new Vector3(inputVector.x, 0, inputVector.z));
         
         
-        playerState = PlayerStateMachine.GetInstance().getState();
+        playerState = PlayerStateMachine.GetInstance().GetState();
 
         switch (playerState)
         {
             case PlayerStateMachine.State.CaffeineRush:
                 timeInState += Time.deltaTime;
 
-                moveSpeed = 25;
+                moveSpeed = moveSpeedCaffeine;
                 
                 //Delays change into basic states (Idle, Walking, Running) by given time in s
-                this.stateChangeDelay(5f);
-                break;
-            
-            case PlayerStateMachine.State.IsIdle:
-                
-                //changes into basic state if player is moving
-                if (inputVector != Vector3.zero)
-                {
-                    timeInState = 0;
-                    
-                    //determines which basic state player is in
-                    this.determineState();
-                    
-                    break;
-                }
-                
-                timeInState += Time.deltaTime;
-                
-                this.stateChangeDelay(3f);
-                break;
-            
-            case PlayerStateMachine.State.IsJiggiling:
-                
-                
-                if (inputVector != Vector3.zero)
-                {
-                    
-                    //determines which basic state player is in
-                    this.determineState();
-                    
-                    break;
-                }
-                
-                //TODO fancy jiggiling
+                this.StateChangeDelay(stateChangeDelay);
                 break;
 
             default:
-                this.determineState();
+                this.DetermineState();
                 break;
         }
     }
@@ -91,13 +67,20 @@ public class Player : MonoBehaviour
     {
         switch (other.tag)
         {
+            case  "Base":
+                CoreBars.IsInBase = true;
+                
+                break;
+
             case "Caffein":
-                PlayerStateMachine.GetInstance().changeState(PlayerStateMachine.State.CaffeineRush);
+                PlayerStateMachine.GetInstance().ChangeState(PlayerStateMachine.State.CaffeineRush);
 
                 Destroy(other.gameObject);
                 break;
             
             case  "Food":
+                CoreBars.PlayerFoundFood(foodBuff);
+                
                 Destroy(other.gameObject);
                 break;
                 
@@ -121,7 +104,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        
+        switch (other.tag)
+        {
+            case "Base":
+                CoreBars.IsInBase = false;
+                
+                break;
+        }
     }
 
     private void PlayerWonGame()
@@ -129,47 +118,41 @@ public class Player : MonoBehaviour
         GameStateMachine.GetInstance().SetState(GameStateMachine.State.FinishedGame);
     }
 
-    private void determineState()
+    private void DetermineState()
     {
         //player isn't moving
         if (inputVector == Vector3.zero)
         {
-            PlayerStateMachine.GetInstance().changeState(PlayerStateMachine.State.IsIdle);
+            PlayerStateMachine.GetInstance().ChangeState(PlayerStateMachine.State.IsIdle);
             return;
         }
 
         //player is moving but shift isn't held down
         //or stamina is depleted
-        if (!Input.GetKey(KeyCode.LeftShift) || Stamina.GetInstance().IsEmpty)
+        if (!Input.GetKey(KeyCode.LeftShift) || CoreBars.Stamina.IsEmpty)
         {
-            PlayerStateMachine.GetInstance().changeState(PlayerStateMachine.State.IsWalking);
+            PlayerStateMachine.GetInstance().ChangeState(PlayerStateMachine.State.IsWalking);
 
-            moveSpeed = 15;
+            moveSpeed = moveSpeedWalking;
             return;
         }
 
         //player is moving, shift is held down and stamina isn't depleted 
-        if (!Stamina.GetInstance().IsEmpty)
+        if (!CoreBars.Stamina.IsEmpty)
         {
-            PlayerStateMachine.GetInstance().changeState(PlayerStateMachine.State.IsRunning);
+            PlayerStateMachine.GetInstance().ChangeState(PlayerStateMachine.State.IsRunning);
 
-            moveSpeed = 20;
+            moveSpeed = moveSpeedRunning;
         }
     }
 
-    private void stateChangeDelay(float delay)
+    private void StateChangeDelay(float delay)
     {
         if (timeInState > delay)
         {
             timeInState = 0;
 
-            if (playerState == PlayerStateMachine.State.IsIdle)
-            {
-                PlayerStateMachine.GetInstance().changeState(PlayerStateMachine.State.IsJiggiling);
-                return;
-            }
-            
-            this.determineState();
+            this.DetermineState();
         }
     }
 }

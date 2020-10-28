@@ -17,15 +17,14 @@ public class PlayerStateMachine
         IsWalking,
         IsRunning,
         CaffeineRush,
-        IsJiggiling,
     }
 
-    public State getState()
+    public State GetState()
     {
         return currentState;
     }
 
-    public void changeState(State state)
+    public void ChangeState(State state)
     {
         this.currentState = state;
     }

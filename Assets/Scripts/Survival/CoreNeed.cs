@@ -2,20 +2,12 @@
 
 namespace Survival
 {
-    public class Hunger : Core
+    public class CoreNeed
     {
-        private static Hunger instance;
-        
         private float maxValue;
         private float currentValue;
 
         private bool isEmpty;
-
-
-        public static Hunger GetInstance()
-        {
-            return instance ?? (instance = new Hunger());
-        }
 
 
         public float CurrentValue
@@ -36,12 +28,11 @@ namespace Survival
             set => isEmpty = value;
         }
 
-
         public void Init(float value)
         {
             this.maxValue = this.currentValue = value;
         }
-        
+
         public void BuffValue(float buff)
         {
             //ceiling for currentValue
@@ -62,17 +53,12 @@ namespace Survival
             {
                 this.currentValue = 0;
 
-                this.IsEmpty = true;
+                this.isEmpty = true;
                 
                 return;
             }
             
             this.currentValue -= debuff;
-        }
-        
-        public void OnEmpty()
-        {
-            this.isEmpty = true;
         }
     }
 }

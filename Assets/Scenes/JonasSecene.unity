@@ -669,6 +669,9 @@ MonoBehaviour:
   hungerBar: {fileID: 1155263238}
   healthBar: {fileID: 1139661103}
   staminaBar: {fileID: 1389972458}
+  maxHunger: 100
+  maxHealth: 100
+  maxStamina: 100
 --- !u!1 &673833758
 GameObject:
   m_ObjectHideFlags: 0

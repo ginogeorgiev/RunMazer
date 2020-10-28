@@ -14,6 +14,7 @@
         Paused,
         MainMenu,
         FinishedGame,
+        LostGame,
     }
 
     public State GetState()
