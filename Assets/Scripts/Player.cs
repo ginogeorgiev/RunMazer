@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
                 break;
             
             case "Exit":
-                if (ScoreManager.Instance.GetFragmentScore() == 4)
+                if (ScoreManager.Instance.GetFragmentScore() == ScoreManager.Instance.GetMaxFragments())
                 {
                     this.PlayerWonGame();
                     //destroy is temporary

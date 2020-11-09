@@ -10,6 +10,8 @@ public class ScoreManager : MonoBehaviour
     //Singleton stuff from last semester (GTAT; Zier)
     private static ScoreManager instance;
     private int fragmentScore;
+    //we have to connect this to the amount of fragments spawned later.
+    [SerializeField] private int maxFragments;
     [SerializeField] private TextMeshProUGUI fragmentText;
 
     public static ScoreManager Instance
@@ -61,23 +63,31 @@ public class ScoreManager : MonoBehaviour
 
         instance = this;
         //DontDestroyOnLoad(gameObject);
+        //maxFragments = 4;
         fragmentScore = 0;
-        fragmentText.text = "Fragment: " + fragmentScore + "/4";
+        fragmentText.text = "Fragment: " + fragmentScore + "/"+GetMaxFragments();
     }
     
     //adds fragment
     public void AddFragmentScore()
     {
-        if (fragmentScore >= 4)
+        
+        if (fragmentScore >= GetMaxFragments())
         {
             return;
         }
         fragmentScore++;
-        fragmentText.text = "Fragment: " + fragmentScore + "/4";
+        Debug.Log(fragmentScore);
+        fragmentText.text = "Fragment: " + fragmentScore + "/"+GetMaxFragments();
     }
 
     public int GetFragmentScore()
     {
         return fragmentScore;
+    }
+
+    public int GetMaxFragments()
+    {
+        return maxFragments;
     }
 }
