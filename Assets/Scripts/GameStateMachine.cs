@@ -13,7 +13,8 @@
         Playing,
         Paused,
         MainMenu,
-        FinishedGame,
+        GameWon,
+        GameOver,
     }
 
     public State GetState()

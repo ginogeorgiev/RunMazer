@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4298547297968849726}
   - component: {fileID: 4298547297968849727}
   m_Layer: 0
-  m_Name: PauseScriptObject
+  m_Name: PauseAndEndScriptObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 3519343558772136542, guid: 4d27072c2ba5ecc4bb57fbebade33dab,
+    type: 3}
+  endPanel: {fileID: 3896443945895866623, guid: e0ba124a6d7127f478681ba7115ba277,
     type: 3}
