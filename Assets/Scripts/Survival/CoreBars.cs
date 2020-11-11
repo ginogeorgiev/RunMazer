@@ -37,6 +37,8 @@ namespace Survival
         [SerializeField] private float depletingRateHunger = 3f;
         [SerializeField] private float depletingRateStamina = 10f;
 
+        [SerializeField] private float fillRateBase = 20f;
+
         [SerializeField] private static float foodBuff = 5f;
 
         private static float deltaTime;
@@ -72,8 +74,8 @@ namespace Survival
             //when in base hunger an stamina get refilled
             if ((isInBase || godMode) && !dieMfDie)
             {
-                hungerCore.FillInBase(deltaTime);
-                staminaCore.FillInBase(deltaTime);
+                hungerCore.IncreaseCore(deltaTime * fillRateBase);
+                staminaCore.IncreaseCore(deltaTime * fillRateBase);
                 
                 return;
             }

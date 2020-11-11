@@ -31,12 +31,6 @@ namespace Survival
             return currentValue;
         }
 
-        public void FillInBase(float factor)
-        {
-            //hardcoded 5 to fill last few %s more quickly
-            this.currentValue += factor * (this.maxValue - this.currentValue + 5f);
-        }
-
         public bool DepleteCore(float debuff)
         {
             //bottom for currentValue
