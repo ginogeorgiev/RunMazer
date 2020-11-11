@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.CompilerServices;
 using Survival;
 using UnityEngine;
@@ -13,11 +14,15 @@ namespace Survival
 {
     public class CoreBars : MonoBehaviour
     {
+        private static Core healthCore;
+        private static Core hungerCore;
+        private static Core staminaCore;
+        
         [SerializeField] private bool godMode = false;
         [SerializeField] private bool dieMfDie = false;
 
-        [SerializeField] private Slider hungerBar;
         [SerializeField] private Slider healthBar;
+        [SerializeField] private Slider hungerBar;
         [SerializeField] private Slider staminaBar;
 
         [SerializeField] private float maxHunger = 100f;
@@ -32,23 +37,12 @@ namespace Survival
         [SerializeField] private float depletingRateHunger = 3f;
         [SerializeField] private float depletingRateStamina = 10f;
 
-        [SerializeField] private float fillRateCoreNeedBase = 2f;
+        [SerializeField] private static float foodBuff = 5f;
 
-        [SerializeField] private float fillRateStamina = 1f;
-
-        private static readonly CoreNeed hunger = new CoreNeed();
-        private static readonly CoreNeed health = new CoreNeed();
-        private static readonly CoreNeed stamina = new CoreNeed();
-
-
-
+        private static float deltaTime;
+        
         private static bool isInBase;
-
-        public static CoreNeed Hunger => hunger;
-
-        public static CoreNeed Health => health;
-
-        public static CoreNeed Stamina => stamina;
+        
 
         public static bool IsInBase
         {
@@ -58,67 +52,70 @@ namespace Survival
 
         void Start()
         {
-            hunger.Init(maxHunger);
-            health.Init(maxHealth);
-            stamina.Init(maxStamina);
+            healthCore = new Core(maxHealth, depletingRateHealth);
+            hungerCore = new Core(maxHunger, depletingRateHunger);
+            staminaCore = new Core(maxStamina, depletingRateStamina);
+
+            healthCore.Bar = healthBar;
+            hungerCore.Bar = hungerBar;
+            staminaCore.Bar = staminaBar;
         }
 
         void Update()
         {
-            hungerBar.value = hunger.CurrentValue;
-            healthBar.value = health.CurrentValue;
-            staminaBar.value = stamina.CurrentValue;
+            deltaTime = Time.deltaTime;
+            
+            currentHealth = healthCore.UpdateCore();
+            currentHunger = hungerCore.UpdateCore();
+            currentStamina = staminaCore.UpdateCore();
 
-
-            //when in base all cores get refilled
+            //when in base hunger an stamina get refilled
             if ((isInBase || godMode) && !dieMfDie)
             {
-                hunger.BuffValue(Time.deltaTime * (hunger.MaxValue - hunger.CurrentValue + fillRateCoreNeedBase));
-                health.BuffValue(Time.deltaTime * ((int) (hunger.CurrentValue / hunger.MaxValue) *
-                                                   (health.MaxValue - health.CurrentValue + fillRateCoreNeedBase)));
-                stamina.BuffValue(Time.deltaTime * (stamina.MaxValue - stamina.CurrentValue + fillRateCoreNeedBase));
-
+                hungerCore.FillInBase(deltaTime);
+                staminaCore.FillInBase(deltaTime);
+                
                 return;
             }
-            else if (dieMfDie)
+            
+            //all cores get emptied
+            if (dieMfDie)
             {
-                hunger.CurrentValue = 0f;
-                health.CurrentValue = 0f;
-                stamina.CurrentValue = 0f;
+                healthCore.EmptyCore();
+                hungerCore.EmptyCore();
+                staminaCore.EmptyCore();
 
                 return;
             }
 
             //hunger always gets diminished when not in base
-            hunger.DebuffValue(Time.deltaTime * depletingRateHunger);
-
-
-            if (hunger.IsEmpty) health.DebuffValue(Time.deltaTime * depletingRateHealth);
-
-            //stamina gets diminished when running
-            //or when stamina is depleted and shift is still held down
-            if (PlayerStateMachine.GetInstance().GetState()
-                == PlayerStateMachine.State.IsRunning ||
-                (PlayerStateMachine.GetInstance().GetState()
-                 == PlayerStateMachine.State.IsWalking &&
-                 Input.GetKey(KeyCode.LeftShift)))
+            if (!hungerCore.DepleteCore(deltaTime) && !healthCore.DepleteCore(deltaTime))
             {
-                stamina.DebuffValue(Time.deltaTime * depletingRateStamina);
-            }
-            else
-            {
-                stamina.BuffValue(Time.deltaTime * fillRateStamina);
-            }
-
-            if (health.IsEmpty)
-            {
-                GameStateMachine.GetInstance().SetState(GameStateMachine.State.LostGame);
+               GameStateMachine.GetInstance().SetState(GameStateMachine.State.LostGame);
             }
         }
 
-        public static void PlayerFoundFood(float foodBuff)
+        public static void PlayerFoundItem(String item)
         {
-            hunger.BuffValue(foodBuff);
+            switch (item)
+            {
+                case "food":
+                    hungerCore.IncreaseCore(foodBuff);
+                    
+                    break;
+            }
+        }
+
+        public static bool PlayerCanRun()
+        {
+            if (!isInBase) return staminaCore.DepleteCore(deltaTime);
+
+            return true;
+        }
+
+        public static void PlayerRests(float restRate)
+        {
+            staminaCore.IncreaseCore(deltaTime * restRate);
         }
     }
 }

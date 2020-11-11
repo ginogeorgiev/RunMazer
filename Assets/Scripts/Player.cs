@@ -13,10 +13,10 @@ public class Player : MonoBehaviour
 
     [SerializeField] private PlayerStateMachine.State playerState;
 
-    [SerializeField] private float foodBuff;
+    [SerializeField] private float restWhenIdle = 5f;
+    [SerializeField] private float restWhenWalking = 2f;
 
-
-    //for time sensitive states (until now: IsIdle and CaffeineRush)
+    //for time sensitive states (until now: CaffeineRush)
     [SerializeField] private float timeInState = 0;
     // [SerializeField] private Game game;
 
@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int moveSpeedRunning = 20;
     [SerializeField] private int moveSpeedCaffeine = 25;
 
+    //time spent in caffeineRush state in s
     [SerializeField] private float stateChangeDelay = 5f;
 
     private Vector3 inputVector;
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
             Input.GetAxis("Vertical") * moveSpeed);
         transform.LookAt(transform.position + new Vector3(inputVector.x, 0, inputVector.z));
         
+        DetermineState();
         
         playerState = PlayerStateMachine.GetInstance().GetState();
 
@@ -47,13 +49,33 @@ public class Player : MonoBehaviour
                 timeInState += Time.deltaTime;
 
                 moveSpeed = moveSpeedCaffeine;
-                
+
                 //Delays change into basic states (Idle, Walking, Running) by given time in s
                 this.StateChangeDelay(stateChangeDelay);
+                
                 break;
+            
+            
+            case PlayerStateMachine.State.IsIdle:
+                
+                CoreBars.PlayerRests(restWhenIdle);
+                
+                break;
+            
+            
+            case PlayerStateMachine.State.IsWalking:
 
-            default:
-                this.DetermineState();
+                moveSpeed = moveSpeedWalking;
+                
+                CoreBars.PlayerRests(restWhenWalking);
+                
+                break;
+            
+            
+            case PlayerStateMachine.State.IsRunning:
+
+                moveSpeed = moveSpeedRunning;
+                
                 break;
         }
     }
@@ -79,7 +101,7 @@ public class Player : MonoBehaviour
                 break;
             
             case  "Food":
-                CoreBars.PlayerFoundFood(foodBuff);
+                CoreBars.PlayerFoundItem("food");
                 
                 Destroy(other.gameObject);
                 break;
@@ -128,22 +150,17 @@ public class Player : MonoBehaviour
         }
 
         //player is moving but shift isn't held down
-        //or stamina is depleted
-        if (!Input.GetKey(KeyCode.LeftShift) || CoreBars.Stamina.IsEmpty)
+        //or shift is held down but stamina is depleted
+        if (!Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.LeftShift) && !CoreBars.PlayerCanRun()))
         {
             PlayerStateMachine.GetInstance().ChangeState(PlayerStateMachine.State.IsWalking);
-
-            moveSpeed = moveSpeedWalking;
+            
             return;
         }
 
-        //player is moving, shift is held down and stamina isn't depleted 
-        if (!CoreBars.Stamina.IsEmpty)
-        {
-            PlayerStateMachine.GetInstance().ChangeState(PlayerStateMachine.State.IsRunning);
-
-            moveSpeed = moveSpeedRunning;
-        }
+        //player is moving, shift is held down and stamina isn't depleted
+        PlayerStateMachine.GetInstance().ChangeState(PlayerStateMachine.State.IsRunning);
+        
     }
 
     private void StateChangeDelay(float delay)
