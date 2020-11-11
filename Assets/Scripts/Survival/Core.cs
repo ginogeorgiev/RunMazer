@@ -12,8 +12,9 @@ namespace Survival
         private float currentValue;
         private float depletingRate;
 
-        public Core(float maxValue, float depletingRate)
+        public Core(Slider slider, float maxValue, float depletingRate)
         {
+            this.bar = slider;
             this.maxValue = this.currentValue = maxValue;
             this.depletingRate = depletingRate;
         }

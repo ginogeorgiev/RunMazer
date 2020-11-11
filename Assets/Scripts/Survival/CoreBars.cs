@@ -54,13 +54,9 @@ namespace Survival
 
         void Start()
         {
-            healthCore = new Core(maxHealth, depletingRateHealth);
-            hungerCore = new Core(maxHunger, depletingRateHunger);
-            staminaCore = new Core(maxStamina, depletingRateStamina);
-
-            healthCore.Bar = healthBar;
-            hungerCore.Bar = hungerBar;
-            staminaCore.Bar = staminaBar;
+            healthCore = new Core(healthBar, maxHealth, depletingRateHealth);
+            hungerCore = new Core(hungerBar, maxHunger, depletingRateHunger);
+            staminaCore = new Core(staminaBar, maxStamina, depletingRateStamina);
         }
 
         void Update()
