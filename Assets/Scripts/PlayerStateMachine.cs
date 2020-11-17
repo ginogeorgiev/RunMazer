@@ -1,7 +1,10 @@
-﻿public class PlayerStateMachine
+﻿using System.Collections.Generic;
+using System.Linq;
+
+public class PlayerStateMachine
 {
     private static PlayerStateMachine instance;
-    private State currentState = State.IsEating;
+    private State currentState = State.IsIdle;
 
     public static PlayerStateMachine GetInstance()
     {
@@ -10,11 +13,10 @@
 
     public enum State
     {
-        IsInBase,
-        HasHunger,
-        IsEating,
-        IsStarving,
-        
+        IsIdle,
+        IsWalking,
+        IsRunning,
+        CaffeineRush,
     }
 
     public State GetState()
@@ -22,12 +24,9 @@
         return currentState;
     }
 
-    public void SetState(State state)
+    public void ChangeState(State state)
     {
-        if (currentState != state)
-        {
-            this.currentState = state;
-        }
+        this.currentState = state;
     }
 
 }
