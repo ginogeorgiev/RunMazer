@@ -43,4 +43,15 @@ public static class MazeDirections
     public static Quaternion ToRotation (this MazeDirection direction) {
         return rotations[(int)direction];
     }
+
+    private static MazeDirection[] nexts = {
+        MazeDirection.West,
+        MazeDirection.North,
+        MazeDirection.East,
+        MazeDirection.South
+    };
+    public static MazeDirection GetNext(this MazeDirection direction)
+    {
+        return nexts[(int) direction];
+    }
 }
