@@ -481,6 +481,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4127821707537033881, guid: b366d4f1aeab3e64e863f6c42e12657a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b366d4f1aeab3e64e863f6c42e12657a, type: 3}
 --- !u!224 &442321976 stripped
@@ -666,12 +671,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b25e5f8b6417d40b94a216b40572da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hungerBar: {fileID: 1155263238}
+  godMode: 0
+  dieMfDie: 0
   healthBar: {fileID: 1139661103}
+  hungerBar: {fileID: 1155263238}
   staminaBar: {fileID: 1389972458}
   maxHunger: 100
   maxHealth: 100
   maxStamina: 100
+  currentHealth: 0
+  currentHunger: 0
+  currentStamina: 0
+  depletingRateHealth: 5
+  depletingRateHunger: 3
+  depletingRateStamina: 10
+  fillRateBase: 20
 --- !u!1 &673833758
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,6 +939,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
+    - {fileID: 0}
     - {fileID: 109013646389658077, guid: 257a961b768aaef4db1ffdcab0376d79, type: 3}
     - {fileID: 3259295932580048799, guid: 257a961b768aaef4db1ffdcab0376d79, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 257a961b768aaef4db1ffdcab0376d79, type: 3}
