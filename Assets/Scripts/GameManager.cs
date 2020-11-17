@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         GameStateMachine.GetInstance().SetState(GameStateMachine.State.Playing);
-        SceneManager.LoadScene("JoeyScene");
+        SceneManager.LoadScene("JonasSecene");
     }
 
     public void MainMenuButton()

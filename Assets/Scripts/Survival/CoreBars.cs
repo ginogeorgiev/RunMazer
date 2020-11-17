@@ -89,7 +89,7 @@ namespace Survival
             //hunger always gets diminished when not in base
             if (!hungerCore.DepleteCore(deltaTime) && !healthCore.DepleteCore(deltaTime))
             {
-               GameStateMachine.GetInstance().SetState(GameStateMachine.State.LostGame);
+               GameStateMachine.GetInstance().SetState(GameStateMachine.State.GameOver);
             }
         }
 

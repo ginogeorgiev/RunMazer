@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     //time spent in caffeineRush state in s
     [SerializeField] private float stateChangeDelay = 5f;
 
+    private bool isInOtherState = false;
+
     private Vector3 inputVector;
     
 
@@ -97,6 +99,8 @@ public class Player : MonoBehaviour
             case "Caffein":
                 PlayerStateMachine.GetInstance().ChangeState(PlayerStateMachine.State.CaffeineRush);
 
+                isInOtherState = true;
+
                 Destroy(other.gameObject);
                 break;
             
@@ -142,6 +146,8 @@ public class Player : MonoBehaviour
 
     private void DetermineState()
     {
+        if (isInOtherState) return;
+        
         //player isn't moving
         if (inputVector == Vector3.zero)
         {
@@ -168,6 +174,8 @@ public class Player : MonoBehaviour
         if (timeInState > delay)
         {
             timeInState = 0;
+
+            isInOtherState = false;
 
             this.DetermineState();
         }
