@@ -173,7 +173,6 @@ GameObject:
   - component: {fileID: 4766536777716320404}
   - component: {fileID: 4766536777716320427}
   - component: {fileID: 4766536777716320406}
-  - component: {fileID: 7970862014625687252}
   - component: {fileID: 4766536777716320426}
   - component: {fileID: 4766536777716320425}
   - component: {fileID: 4766536777716320424}
@@ -214,8 +213,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBody: {fileID: 4766536777716320405}
   moveSpeed: 15
-  foodBuff: 0
-  runBuff: 0
+  playerState: 0
+  restWhenIdle: 5
+  restWhenWalking: 2
+  timeInState: 0
+  moveSpeedWalking: 15
+  moveSpeedRunning: 20
+  moveSpeedCaffeine: 25
+  stateChangeDelay: 5
 --- !u!114 &4766536777716320406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,24 +233,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b25e5f8b6417d40b94a216b40572da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hungerBar: {fileID: 3129507983076381277, guid: 6709d268c255d73449930c704cd646eb,
-    type: 3}
+  godMode: 0
+  dieMfDie: 0
   healthBar: {fileID: 1376836549759139354, guid: e6ad8ae1e937fca4b9ecc2df262576d2,
     type: 3}
-  sleepBar: {fileID: 0}
---- !u!114 &7970862014625687252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4766536777716320431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 223aed9b3581468ba977baf51a193524, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hungerValue: 0
+  hungerBar: {fileID: 3129507983076381277, guid: 6709d268c255d73449930c704cd646eb,
+    type: 3}
+  staminaBar: {fileID: 418026253075409485, guid: 3c9707c346fe1b14893e347c9b9c0974,
+    type: 3}
+  maxHunger: 100
+  maxHealth: 100
+  maxStamina: 100
+  currentHealth: 0
+  currentHunger: 0
+  currentStamina: 0
+  depletingRateHealth: 5
+  depletingRateHunger: 3
+  depletingRateStamina: 10
+  fillRateBase: 20
 --- !u!33 &4766536777716320426
 MeshFilter:
   m_ObjectHideFlags: 0

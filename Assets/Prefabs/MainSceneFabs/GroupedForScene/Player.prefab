@@ -94,12 +94,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4766536777716320406, guid: 5805305f4a9b07b4a89ca9ea28cce399,
+        type: 3}
+      propertyPath: staminaBar
+      value: 
+      objectReference: {fileID: 418026253075409485, guid: 3c9707c346fe1b14893e347c9b9c0974,
+        type: 3}
     - target: {fileID: 4766536777716320431, guid: 5805305f4a9b07b4a89ca9ea28cce399,
         type: 3}
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7970862014625687252, guid: 5805305f4a9b07b4a89ca9ea28cce399, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5805305f4a9b07b4a89ca9ea28cce399, type: 3}
 --- !u!4 &109013646389658079 stripped
 Transform:
@@ -127,7 +134,7 @@ PrefabInstance:
     - target: {fileID: 4726159960144458664, guid: 4f9b143fba8087143810d6bdb6699a0f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.266037
+      value: -13.266038
       objectReference: {fileID: 0}
     - target: {fileID: 4726159960144458664, guid: 4f9b143fba8087143810d6bdb6699a0f,
         type: 3}
