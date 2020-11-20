@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8742970274915029983
+--- !u!1 &8903921414532410711
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2937276482003264029}
-  - component: {fileID: -5884969845121367684}
+  - component: {fileID: 7749928371724923885}
+  - component: {fileID: 3736534632800112901}
   m_Layer: 0
-  m_Name: OuterMazePiece
+  m_Name: InnerMaze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2937276482003264029
+--- !u!4 &7749928371724923885
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8742970274915029983}
+  m_GameObject: {fileID: 8903921414532410711}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,22 +31,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5884969845121367684
+--- !u!114 &3736534632800112901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8742970274915029983}
+  m_GameObject: {fileID: 8903921414532410711}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d6a63d7b859ab944a2b176818149f9a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ffe5fce995cc9240a6dcd6f51321f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 25, y: 25}
-  sizeCells: 20
-  sizeWall: 6
-  cellPrefab: {fileID: -5741930653846233985, guid: 625688f7e16d99d4b8270d86d4a1b420,
+  size: {x: 49, y: 49}
+  sizeCells: 10
+  sizeWall: 3
+  cellPrefab: {fileID: -5741930653846233985, guid: 592adbeeadef18b45bc623be6d236f1a,
     type: 3}
-  wallPrefab: {fileID: 7740092601536915090, guid: 491517c79e1ae254d8eedfebd4ab7512,
+  wallPrefab: {fileID: 7740092601536915090, guid: 6a86301633626cc4fa21bb90da4f5df8,
+    type: 3}
+  sizeBase: {x: 7, y: 7}
+  baseCellPrefab: {fileID: -9000039982378923395, guid: 33b17b3ac7c8b6a419347a05fc8484e8,
+    type: 3}
+  basePrefab: {fileID: 7826093335941775738, guid: 57f861e98d973e04f8bde1fc5e0631b9,
     type: 3}
