@@ -947,6 +947,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Endscreen
       objectReference: {fileID: 0}
+    - target: {fileID: 3896443945895866623, guid: e0ba124a6d7127f478681ba7115ba277,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8077970718378347983, guid: e0ba124a6d7127f478681ba7115ba277,
         type: 3}
       propertyPath: m_LocalPosition.x

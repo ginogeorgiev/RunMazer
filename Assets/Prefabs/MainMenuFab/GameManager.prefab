@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05240174030235f48af2a899560b9b57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPanel: {fileID: 0}
+  usedScene: JoeyScene

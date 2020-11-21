@@ -117,10 +117,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6316076237669054477}
     m_Modifications:
+    - target: {fileID: 793175514982325002, guid: 74deef1f984bb6a4284ba59d4b519c73,
+        type: 3}
+      propertyPath: mazePrefab
+      value: 
+      objectReference: {fileID: -8156789288879656817, guid: 6abd07a44590a34489d13aa0f6935a15,
+        type: 3}
     - target: {fileID: 793175514982325004, guid: 74deef1f984bb6a4284ba59d4b519c73,
         type: 3}
       propertyPath: m_Name
-      value: MazeManagerPrefab
+      value: MazeManager
       objectReference: {fileID: 0}
     - target: {fileID: 793175514982325005, guid: 74deef1f984bb6a4284ba59d4b519c73,
         type: 3}
@@ -195,7 +201,7 @@ PrefabInstance:
     - target: {fileID: 4298547297968849725, guid: c8ae52f701a46cf4f805ffe454ecc1ab,
         type: 3}
       propertyPath: m_Name
-      value: PauseScriptObject
+      value: PauseAndEndScriptObject
       objectReference: {fileID: 0}
     - target: {fileID: 4298547297968849726, guid: c8ae52f701a46cf4f805ffe454ecc1ab,
         type: 3}

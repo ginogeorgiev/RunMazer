@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    
+    [SerializeField] private String usedScene;
     //Singleton stuff from last semester (GTAT; Zier)
     private static GameManager instance;
     
@@ -60,12 +60,7 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject);
-        
-    }
-
-    private void Update()
-    {
+        //DontDestroyOnLoad(gameObject);
         
     }
 
@@ -73,7 +68,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         GameStateMachine.GetInstance().SetState(GameStateMachine.State.Playing);
-        SceneManager.LoadScene("JonasSecene");
+        SceneManager.LoadScene(usedScene);
     }
 
     public void MainMenuButton()

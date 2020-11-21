@@ -47,7 +47,7 @@ PrefabInstance:
     - target: {fileID: 5657055621521307764, guid: 3d5ac608f60228d4abe30089f7aa140a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.000000834465
+      value: 0.00000059604645
       objectReference: {fileID: 0}
     - target: {fileID: 5657055621521307764, guid: 3d5ac608f60228d4abe30089f7aa140a,
         type: 3}
@@ -117,7 +117,7 @@ PrefabInstance:
     - target: {fileID: 7967081627404150437, guid: 3e645774efb04d34a8687e99c6ec2954,
         type: 3}
       propertyPath: m_Name
-      value: MiniMapCameraPrefab
+      value: MiniMapCamera
       objectReference: {fileID: 0}
     - target: {fileID: 7967081627404150440, guid: 3e645774efb04d34a8687e99c6ec2954,
         type: 3}
