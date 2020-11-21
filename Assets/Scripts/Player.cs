@@ -28,9 +28,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float stateChangeDelay = 5f;
 
     private bool isInOtherState = false;
+    private static bool isInBase;
 
     private Vector3 inputVector;
-    
+
+
+    public static bool IsInBase => isInBase;
 
     private void Update()
     {
@@ -56,21 +59,12 @@ public class Player : MonoBehaviour
                 this.StateChangeDelay(stateChangeDelay);
                 
                 break;
-            
-            
-            case PlayerStateMachine.State.IsIdle:
-                
-                CoreBars.PlayerRests(restWhenIdle);
-                
-                break;
-            
-            
+
+
             case PlayerStateMachine.State.IsWalking:
 
                 moveSpeed = moveSpeedWalking;
-                
-                CoreBars.PlayerRests(restWhenWalking);
-                
+
                 break;
             
             
@@ -92,7 +86,7 @@ public class Player : MonoBehaviour
         switch (other.tag)
         {
             case  "Base":
-                CoreBars.IsInBase = true;
+                isInBase = true;
                 
                 break;
 
@@ -104,11 +98,11 @@ public class Player : MonoBehaviour
                 Destroy(other.gameObject);
                 break;
             
-            case  "Food":
+            /*case  "Food":
                 CoreBars.PlayerFoundItem("food");
                 
                 Destroy(other.gameObject);
-                break;
+                break;*/
                 
             case "Fragment":
                 Destroy(other.gameObject);
@@ -133,7 +127,7 @@ public class Player : MonoBehaviour
         switch (other.tag)
         {
             case "Base":
-                CoreBars.IsInBase = false;
+                isInBase = false;
                 
                 break;
         }
