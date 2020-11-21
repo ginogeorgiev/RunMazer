@@ -66,17 +66,24 @@ public class PauseAndEndScript : MonoBehaviour
 
         private void YouLose()
         {
-            Time.timeScale = 0;
-            endText.text = "You Lose!";
-            bgImg.color = new Color(0,0,1,0.5f);
-            endPanel.SetActive(true);
+            if (!endPanel.activeInHierarchy)
+                
+            {
+                Time.timeScale = 0;
+                endText.text = "You Lose!";
+                bgImg.color = new Color(0, 0, 1, 0.5f);
+                endPanel.SetActive(true);
+            }
         }
 
         private void YouWin()
         {
-            Time.timeScale = 0;
-            endText.text = "You Win!";
-            bgImg.color = new Color(1,0,0,0.5f);
-            endPanel.SetActive(true);
+            if (!endPanel.activeInHierarchy)
+            {
+                Time.timeScale = 0;
+                endText.text = "You Win!";
+                bgImg.color = new Color(1, 0, 0, 0.5f);
+                endPanel.SetActive(true);
+            }
         }
 }

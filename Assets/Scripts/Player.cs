@@ -89,26 +89,6 @@ public class Player : MonoBehaviour
                 isInBase = true;
                 
                 break;
-
-            case "Caffein":
-                PlayerStateMachine.GetInstance().ChangeState(PlayerStateMachine.State.CaffeineRush);
-
-                isInOtherState = true;
-
-                Destroy(other.gameObject);
-                break;
-            
-            /*case  "Food":
-                CoreBars.PlayerFoundItem("food");
-                
-                Destroy(other.gameObject);
-                break;*/
-                
-            case "Fragment":
-                Destroy(other.gameObject);
-                ScoreManager.Instance.AddFragmentScore();
-                break;
-            
             case "Exit":
                 if (ScoreManager.Instance.GetFragmentScore() == ScoreManager.Instance.GetMaxFragments())
                 {

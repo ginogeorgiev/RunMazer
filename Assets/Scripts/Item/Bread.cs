@@ -1,4 +1,5 @@
 using System;
+using Survival;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,9 +8,8 @@ namespace Item
     public class Bread : Item
     {
         private bool isRotten = false;
-        /// <summary>
-        /// bread has 30% chance to be rotten
-        /// </summary>
+        
+        //bread has a 30% chance to be rotten
         private void Awake()
         {
             if (Random.value < 0.3f)
@@ -17,20 +17,28 @@ namespace Item
                 GetComponent<Renderer>().material.color = new Color(0.24f,0.37f,0.0f);
                 isRotten = true;
             }
+            
         }
-
+        /// <summary>
+        /// if its not rotten your hunger bar goes up by 20
+        /// if its rotten and hunger bar is not 0 then you lose 10 hunger
+        /// if its rotten and hunger bar is 0 then you lose 10 hp
+        /// </summary>
         protected override void EnterEffect()
         {
-            //TODO fill up hunger bar if it isnt rotten, if it is then deplete hunger faster
             if (!isRotten)
-                Debug.Log("Yum");
+                CoreBars.HungerCore.CurrentValue += 20.0f;
             else
             {
-                Debug.Log("not so yum");
+                if (CoreBars.HungerCore.CurrentValue > 0.0f)
+                    CoreBars.HungerCore.CurrentValue -= 10.0f;
+                else
+                    CoreBars.HealthCore.CurrentValue -= 10.0f;
+                
             }
             Destroy(gameObject);
         }
-        //i need to implement these functions even if we dont use them
+        //we need to implement these functions even if we dont use them
         protected override void ExitEffect()
         {
             
