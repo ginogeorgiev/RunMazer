@@ -26,11 +26,15 @@ namespace Survival
         [SerializeField] private Slider healthBar;
         [SerializeField] private Slider hungerBar;
         [SerializeField] private Slider staminaBar;
-
+        
+        /// <summary>
+        /// for better overview only
+        /// fast access over inspector
+        /// </summary>
         [SerializeField] private float maxHunger = 100f;
         [SerializeField] private float maxHealth = 100f;
         [SerializeField] private float maxStamina = 100f;
-
+        
         [SerializeField] private float currentHealth;
         [SerializeField] private float currentHunger;
         [SerializeField] private float currentStamina;
@@ -45,7 +49,26 @@ namespace Survival
         [SerializeField] private float restWhenWalking = 2f;
 
         private static float deltaTime;
-        
+
+
+        public static Core HealthCore
+        {
+            get => healthCore;
+            set => healthCore = value;
+        }
+
+        public static Core HungerCore
+        {
+            get => hungerCore;
+            set => hungerCore = value;
+        }
+
+        public static Core StaminaCore
+        {
+            get => staminaCore;
+            set => staminaCore = value;
+        }
+
 
         void Start()
         {
@@ -58,6 +81,7 @@ namespace Survival
         {
             deltaTime = Time.deltaTime;
             
+            //Game Over if health depleted
             if (healthCore.CurrentValue == 0)
             {
                 GameStateMachine.GetInstance().SetState(GameStateMachine.State.GameOver);
@@ -68,19 +92,21 @@ namespace Survival
             healthBar.value = healthCore.CurrentValue;
             hungerBar.value = hungerCore.CurrentValue;
             staminaBar.value = staminaCore.CurrentValue;
-
+            
             currentHealth = healthCore.CurrentValue;
             currentHunger = hungerCore.CurrentValue;
             currentStamina = staminaCore.CurrentValue;
 
-            if ((Player.IsInBase || godMode) && !dieMfDie)
+            //increase hunger and stamina to maxVal when in base or god mode enabled
+            if (Player.IsInBase || godMode)
             {
-                hungerCore.CurrentValue = Math.Min(maxHunger, hungerCore.CurrentValue + deltaTime * fillRateBase);
-                staminaCore.CurrentValue = Math.Min(maxStamina, staminaCore.CurrentValue + deltaTime * fillRateBase);
+                hungerCore.CurrentValue = Math.Min(hungerCore.MaxValue, hungerCore.CurrentValue + deltaTime * fillRateBase);
+                staminaCore.CurrentValue = Math.Min(staminaCore.MaxValue, staminaCore.CurrentValue + deltaTime * fillRateBase);
                 
                 return;
             }
 
+            //instant death by depleting cores
             if (dieMfDie)
             {
                 healthCore.CurrentValue = 0;
@@ -90,29 +116,40 @@ namespace Survival
                 return;
             }
             
+            /* checks for player state
+             * running: stamina is decreased over time
+             * walking: stamina is increased slowly
+             * idle: stamina is increased fast
+             */
             if (PlayerStateMachine.GetInstance().GetState() == PlayerStateMachine.State.IsRunning)
             {
-                staminaCore.CurrentValue = Math.Max(0, staminaCore.CurrentValue - deltaTime * depletingRateStamina);
+                staminaCore.CurrentValue = Math.Max(0, staminaCore.CurrentValue - deltaTime * staminaCore.DepletingRate);
             }
             else if (PlayerStateMachine.GetInstance().GetState() == PlayerStateMachine.State.IsWalking)
             {
-                staminaCore.CurrentValue = Math.Min(maxStamina, staminaCore.CurrentValue + deltaTime * restWhenWalking);
+                staminaCore.CurrentValue = Math.Min(staminaCore.MaxValue, staminaCore.CurrentValue + deltaTime * restWhenWalking);
             }
             else if (PlayerStateMachine.GetInstance().GetState() == PlayerStateMachine.State.IsIdle)
             {
-                staminaCore.CurrentValue = Math.Min(maxStamina, staminaCore.CurrentValue + restWhenIdle * deltaTime);
+                staminaCore.CurrentValue = Math.Min(staminaCore.MaxValue, staminaCore.CurrentValue + deltaTime * restWhenIdle);
             }
 
+            //hunger is decreased over time
             if (hungerCore.CurrentValue > 0)
             {
-                hungerCore.CurrentValue = Math.Max(0, hungerCore.CurrentValue - deltaTime * depletingRateHunger);
+                hungerCore.CurrentValue = Math.Max(0, hungerCore.CurrentValue - deltaTime * hungerCore.DepletingRate);
                 
                 return;
             }
 
-            healthCore.CurrentValue = Math.Max(0, healthCore.CurrentValue - deltaTime * depletingRateHealth);
+            //health is decreased over time if hunger is depleted
+            healthCore.CurrentValue = Math.Max(0, healthCore.CurrentValue - deltaTime * healthCore.DepletingRate);
         }
 
+        
+        /// <summary>
+        /// prevents constantly switching between running and walking when stamina is depleted
+        /// </summary>
         public static bool PlayerCanRun()
         {
             return !(staminaCore.CurrentValue - deltaTime * staminaCore.DepletingRate < 0);
