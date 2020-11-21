@@ -25,46 +25,22 @@ namespace Survival
             set => bar = value;
         }
 
-        public float UpdateCore()
+        public float MaxValue
         {
-            bar.value = this.currentValue;
-
-            return currentValue;
+            get => maxValue;
+            set => maxValue = value;
         }
 
-        public bool DepleteCore(float debuff)
+        public float CurrentValue
         {
-            //bottom for currentValue
-            if (this.currentValue - debuff * depletingRate  < 0)
-            {
-                this.currentValue = 0;
-
-                return false;
-            }
-            
-            this.currentValue -= debuff * depletingRate;
-
-            return true;
+            get => currentValue;
+            set => currentValue = value;
         }
 
-        public bool IncreaseCore(float buff)
+        public float DepletingRate
         {
-        //ceiling for currentValue
-        if (this.currentValue + buff > maxValue)
-        {
-            this.currentValue = maxValue;
-            
-            return false;
-        }
-
-        this.currentValue += buff;
-
-        return true;
-        }
-
-        public void EmptyCore()
-        {
-            this.currentValue = 0;
+            get => depletingRate;
+            set => depletingRate = value;
         }
     }
 }

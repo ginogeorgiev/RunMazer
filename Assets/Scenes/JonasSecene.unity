@@ -343,6 +343,8 @@ MonoBehaviour:
   depletingRateHunger: 3
   depletingRateStamina: 10
   fillRateBase: 20
+  restWhenIdle: 4
+  restWhenWalking: 2
 --- !u!1 &673833758
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +736,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -13.266037
       objectReference: {fileID: 0}
+    - target: {fileID: 158709921028384651, guid: 257a961b768aaef4db1ffdcab0376d79,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.00000071525574
+      objectReference: {fileID: 0}
     - target: {fileID: 4874417228342259000, guid: 257a961b768aaef4db1ffdcab0376d79,
         type: 3}
       propertyPath: m_Name
@@ -816,6 +823,17 @@ PrefabInstance:
       propertyPath: endPanel
       value: 
       objectReference: {fileID: 764820230}
+    - target: {fileID: 2154828006803849788, guid: f34a57d6352d5c24d8300c8e203b7e32,
+        type: 3}
+      propertyPath: mazePrefab
+      value: 
+      objectReference: {fileID: -8156789288879656817, guid: 6abd07a44590a34489d13aa0f6935a15,
+        type: 3}
+    - target: {fileID: 2925239534285831162, guid: f34a57d6352d5c24d8300c8e203b7e32,
+        type: 3}
+      propertyPath: usedScene
+      value: JonasSecene
+      objectReference: {fileID: 0}
     - target: {fileID: 3483056889215797762, guid: f34a57d6352d5c24d8300c8e203b7e32,
         type: 3}
       propertyPath: fragmentText
