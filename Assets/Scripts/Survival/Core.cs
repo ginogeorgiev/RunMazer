@@ -1,5 +1,6 @@
 ﻿
 using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Survival
@@ -34,7 +35,15 @@ namespace Survival
         public float CurrentValue
         {
             get => currentValue;
-            set => currentValue = value;
+            set
+            {
+                if (value > maxValue)
+                    currentValue = maxValue;
+                else if (value < 0.0f)
+                    currentValue = 0.0f;
+                else
+                    currentValue = value;
+            } 
         }
 
         public float DepletingRate

@@ -79,16 +79,9 @@ namespace Survival
 
         void Update()
         {
-            deltaTime = Time.deltaTime;
+            if (GameStateMachine.GetInstance().GetState() != GameStateMachine.State.Playing) return;
             
-            //Game Over if health depleted
-            if (healthCore.CurrentValue == 0)
-            {
-                GameStateMachine.GetInstance().SetState(GameStateMachine.State.GameOver);
-                
-                return;
-            }
-
+            deltaTime = Time.deltaTime;
             healthBar.value = healthCore.CurrentValue;
             hungerBar.value = hungerCore.CurrentValue;
             staminaBar.value = staminaCore.CurrentValue;
@@ -96,7 +89,15 @@ namespace Survival
             currentHealth = healthCore.CurrentValue;
             currentHunger = hungerCore.CurrentValue;
             currentStamina = staminaCore.CurrentValue;
-
+            //Game Over if health depleted
+            
+            if (healthCore.CurrentValue <= 0.0f)
+            {
+                healthCore.CurrentValue = 1f; // this is the fix for our you lose panel to trigger twice. for some reason the value stays on 0.0f, which means game over gets triggered immediately after reloading the scene.
+                GameStateMachine.GetInstance().SetState(GameStateMachine.State.GameOver);
+                return;
+            }
+            
             //increase hunger and stamina to maxVal when in base or god mode enabled
             if (Player.IsInBase || godMode)
             {
@@ -109,9 +110,9 @@ namespace Survival
             //instant death by depleting cores
             if (dieMfDie)
             {
-                healthCore.CurrentValue = 0;
-                hungerCore.CurrentValue = 0;
-                staminaCore.CurrentValue = 0;
+                healthCore.CurrentValue = 0.0f;
+                hungerCore.CurrentValue = 0.0f;
+                staminaCore.CurrentValue = 0.0f;
                 
                 return;
             }
@@ -121,29 +122,31 @@ namespace Survival
              * walking: stamina is increased slowly
              * idle: stamina is increased fast
              */
-            if (PlayerStateMachine.GetInstance().GetState() == PlayerStateMachine.State.IsRunning)
+            switch (PlayerStateMachine.GetInstance().GetState())
             {
-                staminaCore.CurrentValue = Math.Max(0, staminaCore.CurrentValue - deltaTime * staminaCore.DepletingRate);
-            }
-            else if (PlayerStateMachine.GetInstance().GetState() == PlayerStateMachine.State.IsWalking)
-            {
-                staminaCore.CurrentValue = Math.Min(staminaCore.MaxValue, staminaCore.CurrentValue + deltaTime * restWhenWalking);
-            }
-            else if (PlayerStateMachine.GetInstance().GetState() == PlayerStateMachine.State.IsIdle)
-            {
-                staminaCore.CurrentValue = Math.Min(staminaCore.MaxValue, staminaCore.CurrentValue + deltaTime * restWhenIdle);
+                case(PlayerStateMachine.State.IsRunning):
+                    staminaCore.CurrentValue = Math.Max(0.0f, staminaCore.CurrentValue - deltaTime * staminaCore.DepletingRate);
+                    break;
+                case(PlayerStateMachine.State.IsWalking):
+                    staminaCore.CurrentValue = Math.Min(staminaCore.MaxValue, staminaCore.CurrentValue + deltaTime * restWhenWalking);
+                    break;
+                case(PlayerStateMachine.State.IsIdle):
+                    staminaCore.CurrentValue = Math.Min(staminaCore.MaxValue, staminaCore.CurrentValue + deltaTime * restWhenIdle);
+                    break;
+                
             }
 
             //hunger is decreased over time
-            if (hungerCore.CurrentValue > 0)
+            if (hungerCore.CurrentValue > 0.0f)
             {
-                hungerCore.CurrentValue = Math.Max(0, hungerCore.CurrentValue - deltaTime * hungerCore.DepletingRate);
+                hungerCore.CurrentValue = hungerCore.CurrentValue - deltaTime * hungerCore.DepletingRate;
                 
                 return;
             }
 
             //health is decreased over time if hunger is depleted
-            healthCore.CurrentValue = Math.Max(0, healthCore.CurrentValue - deltaTime * healthCore.DepletingRate);
+            healthCore.CurrentValue = healthCore.CurrentValue - deltaTime * healthCore.DepletingRate;
+            
         }
 
         

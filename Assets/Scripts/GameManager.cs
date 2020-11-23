@@ -66,8 +66,8 @@ public class GameManager : MonoBehaviour
 
     public void PlayGame()
     {
-        Time.timeScale = 1;
         GameStateMachine.GetInstance().SetState(GameStateMachine.State.Playing);
+        Time.timeScale = 1;
         SceneManager.LoadScene(usedScene);
     }
 
