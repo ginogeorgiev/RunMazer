@@ -52,7 +52,6 @@ Shader "Hidden/MiniMapShader"
                 //trail
                 if(fogCol.r != 1.0f)
                 {
-                    
                     mainCol.rgb = float3(0.0f,0.0f,0.0f);
                     mainCol.a = 1.0f;
                 }
