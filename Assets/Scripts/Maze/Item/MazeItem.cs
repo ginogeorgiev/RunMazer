@@ -5,7 +5,7 @@ namespace Maze.Item
     public abstract class MazeItem : MonoBehaviour
     {
         
-        [SerializeField]private int count;
+        [SerializeField]private int count = 0;
 
         protected abstract void EnterEffect();
         protected abstract void ExitEffect();
