@@ -82,9 +82,17 @@ namespace Survival
             if (GameStateMachine.GetInstance().GetState() != GameStateMachine.State.Playing) return;
             
             deltaTime = Time.deltaTime;
-            healthBar.value = healthCore.CurrentValue;
-            hungerBar.value = hungerCore.CurrentValue;
-            staminaBar.value = staminaCore.CurrentValue;
+            /*healthBar.value = healthCore.CurrentValue / healthCore.MaxValue * 100f;
+            hungerBar.value = hungerCore.CurrentValue / hungerCore.MaxValue * 100f;
+            staminaBar.value = staminaCore.CurrentValue / staminaCore.MaxValue * 100f;*/
+
+            healthCore.normalizeToHundred(healthCore.CurrentValue);
+            hungerCore.normalizeToHundred(hungerCore.CurrentValue);
+            staminaCore.normalizeToHundred(staminaCore.CurrentValue);
+
+            maxHealth = healthCore.MaxValue;
+            maxHunger = hungerCore.MaxValue;
+            maxStamina = staminaCore.MaxValue;
             
             currentHealth = healthCore.CurrentValue;
             currentHunger = hungerCore.CurrentValue;
@@ -101,8 +109,8 @@ namespace Survival
             //increase hunger and stamina to maxVal when in base or god mode enabled
             if (Player.IsInBase || godMode)
             {
-                hungerCore.CurrentValue = Math.Min(hungerCore.MaxValue, hungerCore.CurrentValue + deltaTime * fillRateBase);
-                staminaCore.CurrentValue = Math.Min(staminaCore.MaxValue, staminaCore.CurrentValue + deltaTime * fillRateBase);
+                hungerCore.CurrentValue += deltaTime * fillRateBase;
+                staminaCore.CurrentValue += deltaTime * fillRateBase;
                 
                 return;
             }
@@ -125,13 +133,13 @@ namespace Survival
             switch (PlayerStateMachine.GetInstance().GetState())
             {
                 case(PlayerStateMachine.State.IsRunning):
-                    staminaCore.CurrentValue = Math.Max(0.0f, staminaCore.CurrentValue - deltaTime * staminaCore.DepletingRate);
+                    staminaCore.CurrentValue -= deltaTime * staminaCore.DepletingRate;
                     break;
                 case(PlayerStateMachine.State.IsWalking):
-                    staminaCore.CurrentValue = Math.Min(staminaCore.MaxValue, staminaCore.CurrentValue + deltaTime * restWhenWalking);
+                    staminaCore.CurrentValue += deltaTime * restWhenWalking;
                     break;
                 case(PlayerStateMachine.State.IsIdle):
-                    staminaCore.CurrentValue = Math.Min(staminaCore.MaxValue, staminaCore.CurrentValue + deltaTime * restWhenIdle);
+                    staminaCore.CurrentValue +=deltaTime * restWhenIdle;
                     break;
                 
             }
@@ -139,13 +147,13 @@ namespace Survival
             //hunger is decreased over time
             if (hungerCore.CurrentValue > 0.0f)
             {
-                hungerCore.CurrentValue = hungerCore.CurrentValue - deltaTime * hungerCore.DepletingRate;
+                hungerCore.CurrentValue -= deltaTime * hungerCore.DepletingRate;
                 
                 return;
             }
 
             //health is decreased over time if hunger is depleted
-            healthCore.CurrentValue = healthCore.CurrentValue - deltaTime * healthCore.DepletingRate;
+            healthCore.CurrentValue -= deltaTime * healthCore.DepletingRate;
             
         }
 

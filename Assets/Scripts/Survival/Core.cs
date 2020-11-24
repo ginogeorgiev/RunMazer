@@ -23,7 +23,7 @@ namespace Survival
         public Slider Bar
         {
             get => bar;
-            set => bar = value;
+            set => bar = value; 
         }
 
         public float MaxValue
@@ -50,6 +50,11 @@ namespace Survival
         {
             get => depletingRate;
             set => depletingRate = value;
+        }
+
+        public void normalizeToHundred(float value)
+        {
+            bar.value = value / maxValue * 100f;
         }
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6726042436492385500}
   - component: {fileID: 6726042436492385503}
   - component: {fileID: 6726042436492385502}
+  - component: {fileID: 6567466691323685935}
   m_Layer: 0
   m_Name: Coffee
   m_TagString: Caffein
@@ -94,3 +95,15 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &6567466691323685935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6726042436492385497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c961147fd58c4f7d8562ed681f39b5dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
