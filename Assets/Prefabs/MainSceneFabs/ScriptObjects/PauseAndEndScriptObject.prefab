@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f2f57a1696ffe40a996ff99224a60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pausePanel: {fileID: 3519343558772136542, guid: 4d27072c2ba5ecc4bb57fbebade33dab,
-    type: 3}
   endPanel: {fileID: 3896443945895866623, guid: e0ba124a6d7127f478681ba7115ba277,
     type: 3}
+  playAgainText: {fileID: 831606444495876828, guid: 8e076edfa0ff71f4cb57b9cb7e80ca2e,
+    type: 3}
+  miniMap: {fileID: 1084815311408976894, guid: c57b398cda1b05145bc03060aec25eab, type: 3}
