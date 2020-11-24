@@ -47,3 +47,7 @@ MonoBehaviour:
     type: 3}
   outerMazePiecePrefab: {fileID: -5884969845121367684, guid: 1198606ec026a694d96fb2173ebb1d07,
     type: 3}
+  fragmentPrefab: {fileID: 3984734874435330999, guid: 72c18336e6a13b4448b05f6a669b81c9,
+    type: 3}
+  itemPrefabList:
+  - {fileID: 626213582877099573, guid: e93d0c930a4cacb49a0b5ab5d4fc3886, type: 3}

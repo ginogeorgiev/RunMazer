@@ -1,11 +1,10 @@
-using System;
 using Survival;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Item
+namespace Maze.Item
 {
-    public class Bread : Item
+    public class Bread : MazeItem
     {
         private bool isRotten = false;
         

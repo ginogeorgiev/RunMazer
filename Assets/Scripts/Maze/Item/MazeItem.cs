@@ -1,10 +1,12 @@
-using System;
 using UnityEngine;
 
-namespace Item
+namespace Maze.Item
 {
-    public abstract class Item : MonoBehaviour
+    public abstract class MazeItem : MonoBehaviour
     {
+        
+        [SerializeField]private int count;
+
         protected abstract void EnterEffect();
         protected abstract void ExitEffect();
         
@@ -34,5 +36,9 @@ namespace Item
                 StayEffect();
             }
         }
+
+        //************** GETTERS & SETTERS ************//
+        
+        public int Count => count;
     }
 }

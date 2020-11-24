@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 793175514982325005}
   - component: {fileID: 793175514982325002}
   m_Layer: 0
-  m_Name: MazeManagerPrefab
+  m_Name: MazeManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,5 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeaf025c163684f4d90feec042a8ccbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazePrefab: {fileID: -8156789288879656817, guid: 2cdefed97ce08e748a6fc7a52bd62701,
+  mazePrefab: {fileID: -8156789288879656817, guid: 6abd07a44590a34489d13aa0f6935a15,
     type: 3}
+  mazeItemPrefabList:
+  - {fileID: 3984734874435330999, guid: 72c18336e6a13b4448b05f6a669b81c9, type: 3}
+  - {fileID: 626213582877099573, guid: e93d0c930a4cacb49a0b5ab5d4fc3886, type: 3}

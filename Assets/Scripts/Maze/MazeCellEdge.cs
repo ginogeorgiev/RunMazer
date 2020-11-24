@@ -1,23 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MazeCellEdge : MonoBehaviour
+namespace Maze
 {
-    public MazeCell cell, otherCell;
+    public class MazeCellEdge : MonoBehaviour
+    {
+        public MazeCell cell, otherCell;
 	
-    public MazeDirection direction;
+        public MazeDirection direction;
     
-    /// <summary>
-    /// Initializes Edge between two cells and transforms it to sit in between
-    /// </summary>
-    public void Initialize (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
-        this.cell = cell;
-        this.otherCell = otherCell;
-        this.direction = direction;
-        cell.SetEdge(direction, this);
-        transform.parent = cell.transform;
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = direction.ToRotation();
+        /// <summary>
+        /// Initializes Edge between two cells and transforms it to sit in between
+        /// </summary>
+        public void Initialize (MazeCell cell, MazeCell otherCell, MazeDirection direction) {
+            this.cell = cell;
+            this.otherCell = otherCell;
+            this.direction = direction;
+            cell.SetEdge(direction, this);
+            transform.parent = cell.transform;
+            transform.localPosition = Vector3.zero;
+            transform.localRotation = direction.ToRotation();
+        }
     }
 }

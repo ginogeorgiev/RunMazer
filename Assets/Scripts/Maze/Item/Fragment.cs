@@ -1,15 +1,13 @@
-using System;
-using Survival;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Item
+namespace Maze.Item
 {
     /// <summary>
     /// if you collide with the item, the fragment score goes up and plate moves on the y axis
     /// goes back to old position once it exits the collision
     /// </summary>
-    public class Fragment : Item
+    public class Fragment : MazeItem
     {
         private bool alreadyPressed = false;
         private Vector3 pos;
