@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Maze;
+using UnityEngine;
 
 public class MazeCell : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class MazeCell : MonoBehaviour
     private Vector2Int coordinates;
     private bool visited;
     private int path;
+    private bool hasItem;
 
     //************** GETTERS & SETTERS ************//
     public void SetCoordinates(int x, int y)
@@ -46,8 +48,14 @@ public class MazeCell : MonoBehaviour
         this.path = path;
     }
 
-    public int getPath()
+    public int GetPath()
     {
         return path;
+    }
+
+    public bool HasItem
+    {
+        get => hasItem;
+        set => hasItem = value;
     }
 }
