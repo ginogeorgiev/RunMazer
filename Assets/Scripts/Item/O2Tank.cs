@@ -5,17 +5,15 @@ namespace Item
 {
     
     /// <summary>
-    /// sets stamina depleting rate to given percentage of initial value
+    /// increases stamina currentValue by given value
     /// </summary>
-    public class Coffee : Item
+    public class O2Tank : Item
     {
-        [SerializeField] private float staminaDepletingEffect = 0.8f;
+        [SerializeField] private float staminaValueEffect = 20f;
         
         protected override void EnterEffect()
         {
-            CoreBars.StaminaCore.DepletingRate *= staminaDepletingEffect;
-            
-            Debug.Log("Stamina depleting rate down");
+            CoreBars.StaminaCore.CurrentValue += staminaValueEffect;
             
             Destroy(gameObject);
         }
@@ -27,7 +25,7 @@ namespace Item
 
         protected override void StayEffect()
         {
-           
+            
         }
     }
 }

@@ -3,20 +3,28 @@ using UnityEngine;
 
 namespace Item
 {
+    
+    /// <summary>
+    /// Extends stamina by determined value (in %)
+    /// </summary>
     public class SmallSatchel : Item
     {
+        [SerializeField] private float hungerExtensionEffect = 0.2f;
+        
         protected override void EnterEffect()
         {
             GameObject hunger = GameObject.Find("HungerBar");
 
             RectTransform size = hunger.GetComponent<RectTransform>();
             
-            size.position = new Vector3(size.position.x + size.sizeDelta.x * 0.1f, size.position.y, size.position.z);
+            //moves bar to the right by half the extension percentage
+            size.position = new Vector3(size.position.x + size.sizeDelta.x * (hungerExtensionEffect / 2), size.position.y, size.position.z);
             
-            size.localScale = new Vector3(size.localScale.x * 1.2f, size.localScale.y, size.localScale.z);
+            size.localScale = new Vector3(size.localScale.x * (hungerExtensionEffect + 1), size.localScale.y, size.localScale.z);
 
-            CoreBars.HungerCore.MaxValue *= 1.2f;
-            CoreBars.HungerCore.CurrentValue += CoreBars.HungerCore.MaxValue * 0.2f;
+            CoreBars.HungerCore.MaxValue *= (hungerExtensionEffect + 1);
+            //current value is increased by extension value
+            CoreBars.HungerCore.CurrentValue += CoreBars.HungerCore.MaxValue * hungerExtensionEffect;
             
             Destroy(gameObject);
         }

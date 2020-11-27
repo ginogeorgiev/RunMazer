@@ -7,6 +7,7 @@ namespace Item
 {
     public class Bread : Item
     {
+        [SerializeField] private float healthValueEffect = 20f;
         private bool isRotten = false;
         
         //bread has a 30% chance to be rotten
@@ -27,15 +28,16 @@ namespace Item
         protected override void EnterEffect()
         {
             if (!isRotten)
-                CoreBars.HungerCore.CurrentValue += 20.0f;
+                CoreBars.HungerCore.CurrentValue += healthValueEffect;
             else
             {
                 if (CoreBars.HungerCore.CurrentValue > 0.0f)
-                    CoreBars.HungerCore.CurrentValue -= 10.0f;
+                    CoreBars.HungerCore.CurrentValue -= healthValueEffect / 2;
                 else
-                    CoreBars.HealthCore.CurrentValue -= 10.0f;
+                    CoreBars.HealthCore.CurrentValue -= healthValueEffect / 2;
                 
             }
+            
             Destroy(gameObject);
         }
         //we need to implement these functions even if we dont use them
