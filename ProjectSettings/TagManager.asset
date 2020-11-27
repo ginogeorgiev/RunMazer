@@ -10,6 +10,7 @@ TagManager:
   - Caffein
   - Fragment
   - Exit
+  - Wall
   layers:
   - Default
   - TransparentFX
