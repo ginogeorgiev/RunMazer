@@ -16,7 +16,6 @@ public class PlayerStateMachine
         IsIdle,
         IsWalking,
         IsRunning,
-        CaffeineRush,
     }
 
     public State GetState()
