@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
 
         //player is moving but shift isn't held down
         //or shift is held down but stamina is depleted
-        if (!Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.LeftShift) && !CoreBars.PlayerCanRun()))
+        if (!Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.LeftShift) && !CoreBars.PlayerCanRun))
         {
             PlayerStateMachine.GetInstance().ChangeState(PlayerStateMachine.State.IsWalking);
             
