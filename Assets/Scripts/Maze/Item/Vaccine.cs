@@ -1,13 +1,13 @@
 ﻿using Survival;
 using UnityEngine;
 
-namespace Item
+namespace Maze.Item
 {
     
     /// <summary>
     /// decreases health depleting rate to given percentage of initial value
     /// </summary>
-    public class Vaccine : Item
+    public class Vaccine : MazeItem
     {
         [SerializeField] private float healthDepletingEffect = 0.8f;
         

@@ -1,13 +1,13 @@
 ﻿using Survival;
 using UnityEngine;
 
-namespace Item
+namespace Maze.Item
 {
     
     /// <summary>
     /// Extends health by determined value (in %)
     /// </summary>
-    public class Apple : Item
+    public class Apple : MazeItem
     {
         [SerializeField] private float healthExtensionEffect = 0.2f;
         

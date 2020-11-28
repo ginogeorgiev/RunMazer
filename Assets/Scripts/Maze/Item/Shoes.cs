@@ -1,13 +1,13 @@
 ﻿using Survival;
 using UnityEngine;
 
-namespace Item
+namespace Maze.Item
 {
     
     /// <summary>
     /// Extends stamina by determined value (in %)
     /// </summary>
-    public class Shoes : Item
+    public class Shoes : MazeItem
     {
         [SerializeField] private float staminaExtensionEffect = 0.2f;
         

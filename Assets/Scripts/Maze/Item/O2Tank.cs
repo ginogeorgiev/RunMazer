@@ -1,13 +1,13 @@
 ﻿using Survival;
 using UnityEngine;
 
-namespace Item
+namespace Maze.Item
 {
     
     /// <summary>
     /// increases stamina currentValue by given value
     /// </summary>
-    public class O2Tank : Item
+    public class O2Tank : MazeItem
     {
         [SerializeField] private float staminaValueEffect = 20f;
         

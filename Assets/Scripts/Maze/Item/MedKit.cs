@@ -1,13 +1,13 @@
 ﻿using Survival;
 using UnityEngine;
 
-namespace Item
+namespace Maze.Item
 {
     
     /// <summary>
     /// increases health currentValue by given value
     /// </summary>
-    public class MedKit : Item
+    public class MedKit : MazeItem
     {
         [SerializeField] private float healthValueEffect = 20f;
         

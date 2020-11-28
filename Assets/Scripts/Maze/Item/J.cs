@@ -1,7 +1,7 @@
 ﻿using Survival;
 using UnityEngine;
 
-namespace Item
+namespace Maze.Item
 {
     
     /// <summary>
@@ -9,7 +9,7 @@ namespace Item
     /// sets hunger depleting to given percentage of initial value
     /// sets stamina depleting to given percentage of initial value
     /// </summary>
-    public class J : Item
+    public class J : MazeItem
     {
         [SerializeField] private float hungerDepletingEffect = 1.2f;
         [SerializeField] private float staminaDepletingEffect = 1.2f;

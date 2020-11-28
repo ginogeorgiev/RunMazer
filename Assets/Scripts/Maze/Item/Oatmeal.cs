@@ -1,13 +1,13 @@
 ﻿using Survival;
 using UnityEngine;
 
-namespace Item
+namespace Maze.Item
 {
     
     /// <summary>
     /// decreases hunger depleting rate to given percentage of initial value
     /// </summary>
-    public class Oatmeal : Item
+    public class Oatmeal : MazeItem
     {
         [SerializeField] private float hungerDepletingEffect = 0.8f;
         

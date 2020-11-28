@@ -1,7 +1,7 @@
 ﻿using Survival;
 using UnityEngine;
 
-namespace Item
+namespace Maze.Item
 {
     
     /// <summary>
@@ -9,7 +9,7 @@ namespace Item
     /// sets stamina depleting rate -*-
     /// makes you feel like Sophie Scholl
     /// </summary>
-    public class FfpMask : Item
+    public class FfpMask : MazeItem
     {
         [SerializeField] private float healthDepletingEffect = 0.5f;
         [SerializeField] private float staminaDepletingEffect = 1.01f;

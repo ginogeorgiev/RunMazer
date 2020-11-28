@@ -1,13 +1,13 @@
 ﻿using Survival;
 using UnityEngine;
 
-namespace Item
+namespace Maze.Item
 {
     
     /// <summary>
     /// sets stamina depleting rate to given percentage of initial value
     /// </summary>
-    public class Coffee : Item
+    public class Coffee : MazeItem
     {
         [SerializeField] private float staminaDepletingEffect = 0.8f;
         
