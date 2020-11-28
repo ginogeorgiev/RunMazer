@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-
-public class MazeCellBase : MazeCell
+﻿namespace Maze
 {
+    public class MazeCellBase : MazeCell
+    {
     
+    }
 }
