@@ -12,14 +12,9 @@ namespace Maze.Item
     {
         [SerializeField] private float delayInSec = 1.0f;
         [SerializeField] private GameObject spear;
-        [SerializeField] private float animSpeed;
-        private bool isCoroutineExecuting = false;
 
-        private void Start()
-        {
-            spear.gameObject.GetComponent<Spear>().AnimSpeed = animSpeed;
-            Debug.Log(spear.gameObject.GetComponent<Spear>().AnimSpeed);
-        }
+
+        private bool isCoroutineExecuting = false;
 
         private void Update()
         {

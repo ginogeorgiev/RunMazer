@@ -12,7 +12,7 @@ namespace Maze.Item
     public class Spear : MonoBehaviour
     {
         [SerializeField] private float damageToPlayer = 15.0f;
-        private float animSpeed = 1.0f;
+        [SerializeField] private float animSpeed = 1.0f;
         private Animation anim;
         private AnimationState mainState;
 
