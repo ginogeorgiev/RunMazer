@@ -167,5 +167,14 @@ namespace Maze
             int cellX = cellNumber - cellY * size.x;
             return GetCell(cellX, cellY);
         }
+        
+        public override void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction)
+        {
+            MazeCellWall wall = Instantiate(wallPrefab) as MazeCellWall;
+            wall.Initialize(cell, otherCell, direction);
+            Transform childTransform = wall.transform.GetChild(0);
+            wall.transform.GetChild(0).localScale = childTransform.localScale + new Vector3(0, 0, 1);
+            wall.transform.GetChild(0).localPosition = new Vector3(sizeCells * 0.5f, 1.5f, 0);
+        }
     }
 }

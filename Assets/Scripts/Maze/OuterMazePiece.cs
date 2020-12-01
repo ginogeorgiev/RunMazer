@@ -19,6 +19,7 @@ namespace Maze
             {
                 return;
             }
+
             cells = new MazeCell[size.x, size.y];
             for (int x = 0; x < size.x; x++)
             {
@@ -63,7 +64,7 @@ namespace Maze
                     }
                 }
             }
-        
+
             generated = true;
         }
 
@@ -92,7 +93,7 @@ namespace Maze
                 new Vector3(sizeCells * (x - size.x / 2), -1f, sizeCells * (y - size.y / 2));
             cells[x, y] = cell;
         }
-    
+
         /// <summary>
         /// Variant of Hunt-and-Kill algorithm
         /// </summary>
@@ -135,19 +136,19 @@ namespace Maze
             this.orientation = orientation;
             if (generated)
             {
-                    
                 Vector2Int dir = MazeDirections.ToIntVector2(orientation) +
                                  MazeDirections.ToIntVector2(orientation.GetNext());
                 float diffX = innerSize.x / 2 - (size.x - boundary.x - 1) * sizeCells;
                 float diffY = innerSize.x / 2 - (size.y - boundary.y - 1) * sizeCells;
 
                 transform.localPosition =
-                    new Vector3(dir.x * (size.x * sizeCells / 2f + diffX), 0, dir.y * (size.y * sizeCells / 2f + diffY));
+                    new Vector3(dir.x * (size.x * sizeCells / 2f + diffX), 0,
+                        dir.y * (size.y * sizeCells / 2f + diffY));
                 transform.localRotation = MazeDirections.ToRotation(MazeDirections.GetOpposite(orientation));
             }
         }
 
-    
+
         /// <summary>
         /// sets size of the innerMazePiece and calculates x and y boundaries where outer piece cells need to be placed
         /// </summary>
@@ -185,5 +186,14 @@ namespace Maze
         }
 
         public MazeDirection Orientation => orientation;
+        
+        public override void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction)
+        {
+            MazeCellWall wall = Instantiate(wallPrefab) as MazeCellWall;
+            wall.Initialize(cell, otherCell, direction);
+            Transform childTransform = wall.transform.GetChild(0);
+            wall.transform.GetChild(0).localScale = new Vector3(childTransform.localScale.x, childTransform.localScale.y*2,childTransform.localScale.z*2 + 1);
+            wall.transform.GetChild(0).localPosition = new Vector3(sizeCells* 0.5f, 1.5f, 0);
+        }
     }
 }

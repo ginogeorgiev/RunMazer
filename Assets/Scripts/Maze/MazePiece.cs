@@ -7,9 +7,8 @@ namespace Maze
     {
         [SerializeField] protected Vector2Int size = Vector2Int.zero;
         [SerializeField] protected float sizeCells = 0;
-        [SerializeField] private float sizeWall = 0;
         [SerializeField] protected MazeCell cellPrefab = null;
-        [SerializeField] private MazeCellWall wallPrefab = null;
+        [SerializeField] protected MazeCellWall wallPrefab = null;
 
         protected MazeCell[,] cells;
         protected MazeCell currentCell;
@@ -22,13 +21,7 @@ namespace Maze
         /// Instantiates, Initializes and Transfroms wall to fit between <param name="cell"></param> and <param name="otherCell"></param>
         /// </summary>
         /// <param name="direction">of the wall</param>
-        public void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction)
-        {
-            MazeCellWall wall = Instantiate(wallPrefab) as MazeCellWall;
-            wall.Initialize(cell, otherCell, direction);
-            wall.transform.localScale = new Vector3(1, sizeWall, sizeCells + 1);
-            wall.transform.GetChild(0).localPosition = new Vector3(sizeCells * 0.5f, 0, 0);
-        }
+        public abstract void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction);
 
         public abstract void HuntAndKill();
 
