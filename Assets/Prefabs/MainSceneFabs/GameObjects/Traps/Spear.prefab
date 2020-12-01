@@ -95,7 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04f72074d1f74937bcd80a219f8b8329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animSpeed: 1
+  damageToPlayer: 15
+  animSpeed: 0.8
 --- !u!111 &6622318507577932414
 Animation:
   m_ObjectHideFlags: 0
