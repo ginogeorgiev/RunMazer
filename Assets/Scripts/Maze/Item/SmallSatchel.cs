@@ -1,5 +1,6 @@
 ﻿using Survival;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Maze.Item
 {
@@ -13,7 +14,7 @@ namespace Maze.Item
         
         protected override void EnterEffect()
         {
-            GameObject hunger = GameObject.Find("HungerBar");
+            Slider hunger = CoreBars.HungerCore.Bar;
 
             RectTransform size = hunger.GetComponent<RectTransform>();
             
