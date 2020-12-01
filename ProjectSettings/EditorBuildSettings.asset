@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PliScene.unity
     guid: 1947c3bf45243b44d8fa043ef2df19da
+  - enabled: 1
+    path: Assets/Scenes/GinoScene.unity
+    guid: 09956606b2824f14bb7078775d15146b
   m_configObjects: {}

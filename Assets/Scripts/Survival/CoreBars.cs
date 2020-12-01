@@ -115,7 +115,7 @@ namespace Survival
             }
 
             //increase hunger and stamina to maxVal when in base or god mode enabled
-            if (Player.IsInBase || godMode)
+            if (PlayerController.IsInBase || godMode)
             {
                 hungerCore.CurrentValue += deltaTime * fillRateBase;
                 staminaCore.CurrentValue += deltaTime * fillRateBase;
