@@ -169,7 +169,7 @@ namespace Maze
         {
             int cellX;
             int cellY;
-            if (randomCellNumber > (boundary.y + 1) * size.x)
+            if (randomCellNumber >= (boundary.y + 1) * size.x)
             {
                 randomCellNumber -= (boundary.y + 1) * size.x;
                 cellY = randomCellNumber / (boundary.x + 1);
