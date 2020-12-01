@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 396150725045700880}
   - component: {fileID: 396150725045700881}
   - component: {fileID: 396150725045700882}
+  - component: {fileID: 8407866104105466818}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Food
@@ -93,3 +94,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8407866104105466818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396150725045700908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cdaf2f7781146a7bfb94283d04a996c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 0
+  healthExtensionEffect: 0.2
