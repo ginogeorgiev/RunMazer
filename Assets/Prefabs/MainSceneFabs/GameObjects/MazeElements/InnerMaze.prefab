@@ -45,10 +45,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 49, y: 49}
   sizeCells: 10
-  sizeWall: 3
+  wallScale: 1
   cellPrefab: {fileID: -5741930653846233985, guid: 592adbeeadef18b45bc623be6d236f1a,
     type: 3}
   wallPrefab: {fileID: 7740092601536915090, guid: 6a86301633626cc4fa21bb90da4f5df8,
+    type: 3}
+  buttressPrefab: {fileID: 2019270484868728828, guid: c3dc7fbf3eb56294daf0dd2a7fd2b94a,
     type: 3}
   sizeBase: {x: 7, y: 7}
   baseCellPrefab: {fileID: -9000039982378923395, guid: 33b17b3ac7c8b6a419347a05fc8484e8,
