@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Maze.Item
@@ -6,7 +7,7 @@ namespace Maze.Item
     {
         
         [SerializeField]private int count = 0;
-
+        
         protected abstract void EnterEffect();
         protected abstract void ExitEffect();
         
@@ -39,6 +40,11 @@ namespace Maze.Item
 
         //************** GETTERS & SETTERS ************//
         
-        public int Count => count;
+        //public int Count => count;
+        public int Count
+        {
+            get => count;
+            set => count = value;
+        }
     }
 }
