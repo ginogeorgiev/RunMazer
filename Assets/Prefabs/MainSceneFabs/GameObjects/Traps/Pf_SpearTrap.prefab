@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731bd4148018445a845ce3a02c50c0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 0
+  count: 10
   delayInSec: 1
   spear: {fileID: 3681295391479980698, guid: b32fa75f3a411e74485e9af6ad70fa6c, type: 3}
 --- !u!1 &8758497027336375891

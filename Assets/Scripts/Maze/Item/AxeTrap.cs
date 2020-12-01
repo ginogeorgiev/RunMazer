@@ -13,7 +13,12 @@ namespace Maze.Item
         [SerializeField] private float animSpeed = 0.5f;
         private Animation anim;
         private AnimationState mainState;
-        
+
+        private void Start()
+        {
+            transform.localRotation = MazeDirections.ToRotation(MazeDirections.RandomValue);
+        }
+
         protected override void EnterEffect()
         {
             anim = GetComponent<Animation>();

@@ -52,5 +52,11 @@ namespace Maze
         {
             return nexts[(int) direction];
         }
+        
+        public static MazeDirection RandomValue {
+            get {
+                return (MazeDirection)Random.Range(0, Count);
+            }
+        }
     }
 }

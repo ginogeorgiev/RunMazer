@@ -84,7 +84,7 @@ namespace Maze.Item
                 {
                     if (!cell.HasItem)
                     {
-                        Instantiate(mazeItemPrefab, cell.transform, false);
+                        MazeItem item = Instantiate(mazeItemPrefab, cell.transform, false);
                         cell.HasItem = true;
                     }
                     else

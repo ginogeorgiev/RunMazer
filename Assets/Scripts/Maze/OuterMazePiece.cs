@@ -38,7 +38,7 @@ namespace Maze
                         CreateWall(GetCell(x, y), GetCell(x + 1, y), MazeDirection.North);
                         CreateWall(GetCell(x, y), GetCell(x - 1, y), MazeDirection.South);
                         CreateWall(GetCell(x, y), GetCell(x, y - 1), MazeDirection.East);
-                        CreateWall(GetCell(x, y), GetCell(x + 1, y + 1), MazeDirection.West);
+                        CreateWall(GetCell(x, y), GetCell(x, y + 1), MazeDirection.West);
                     }
                 }
             }
@@ -64,6 +64,8 @@ namespace Maze
                     }
                 }
             }
+
+            RemoveButtresses();
 
             generated = true;
         }
@@ -91,6 +93,7 @@ namespace Maze
             cell.transform.GetChild(0).localScale = new Vector3(sizeCells * 0.1f, 1, sizeCells * 0.1f);
             cell.transform.localPosition =
                 new Vector3(sizeCells * (x - size.x / 2), -1f, sizeCells * (y - size.y / 2));
+            AddButtresses(cell);
             cells[x, y] = cell;
         }
 
@@ -192,8 +195,8 @@ namespace Maze
             MazeCellWall wall = Instantiate(wallPrefab) as MazeCellWall;
             wall.Initialize(cell, otherCell, direction);
             Transform childTransform = wall.transform.GetChild(0);
-            wall.transform.GetChild(0).localScale = new Vector3(childTransform.localScale.x, childTransform.localScale.y*2,childTransform.localScale.z*2 + 1);
-            wall.transform.GetChild(0).localPosition = new Vector3(sizeCells* 0.5f, 1.5f, 0);
+            wall.transform.GetChild(0).localScale = new Vector3(childTransform.localScale.x, childTransform.localScale.y*2,childTransform.localScale.z*2 - 1);
+            wall.transform.GetChild(0).localPosition = new Vector3(sizeCells* 0.5f - 0.25f, 3f, 0);
         }
     }
 }
