@@ -351,6 +351,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1073051347625673186, guid: fd2fb1749a32b08479ba3f04a10e64cb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073051347625673186, guid: fd2fb1749a32b08479ba3f04a10e64cb,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073051347625673186, guid: fd2fb1749a32b08479ba3f04a10e64cb,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073051347625673186, guid: fd2fb1749a32b08479ba3f04a10e64cb,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073051347625673186, guid: fd2fb1749a32b08479ba3f04a10e64cb,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073051347625673186, guid: fd2fb1749a32b08479ba3f04a10e64cb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -627
+      objectReference: {fileID: 0}
+    - target: {fileID: 1073051347625673186, guid: fd2fb1749a32b08479ba3f04a10e64cb,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -934
+      objectReference: {fileID: 0}
     - target: {fileID: 3920876521313688064, guid: fd2fb1749a32b08479ba3f04a10e64cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -460,6 +495,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MenuHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171067637314902026, guid: fd2fb1749a32b08479ba3f04a10e64cb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd2fb1749a32b08479ba3f04a10e64cb, type: 3}
