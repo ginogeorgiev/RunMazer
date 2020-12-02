@@ -79,7 +79,7 @@ public class ScoreManager : MonoBehaviour
         Debug.Log(fragmentScore);
         fragmentText.text = "Fragment: " + fragmentScore + "/"+GetMaxFragments();
         
-        if (ScoreManager.Instance.GetFragmentScore() == ScoreManager.Instance.GetMaxFragments())
+        if (GetFragmentScore() >= GetMaxFragments())
         {
             door.transform.Rotate(new Vector3(90,0,0));
         }

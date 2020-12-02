@@ -121,10 +121,13 @@ public class PlayerController : MonoBehaviour {
 				break;
 			case "Exit":
 				{
-					this.PlayerWonGame();
-					//destroy is temporary
-					Destroy(gameObject);
-					Debug.Log("you won");
+					if (ScoreManager.Instance.GetFragmentScore() >= ScoreManager.Instance.GetMaxFragments())
+					{
+						PlayerWonGame();
+						//destroy is temporary
+						Destroy(gameObject);
+						Debug.Log("you won");
+					}
 				}
 				break;
 		}
