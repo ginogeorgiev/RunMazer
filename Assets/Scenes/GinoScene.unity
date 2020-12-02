@@ -1116,51 +1116,6 @@ PrefabInstance:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 925190988}
-    - target: {fileID: 1725898018950875744, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: depletingRateStamina
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1725898018950875744, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: depletingRateHunger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1725898018950875744, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: depletingRateHealth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1725898018950875744, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: restWhenIdle
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1725898018950875744, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: restWhenWalking
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1725898018950875744, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: godMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1725898018950875744, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: fillRateBase
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1725898018950875744, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: maxHealth
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 1725898018950875758, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: m_SlopeLimit
-      value: 70
-      objectReference: {fileID: 0}
     - target: {fileID: 1959900139834761002, guid: 586480b8bb47ec74ab1ed31c423d574a,
         type: 3}
       propertyPath: m_Name
@@ -1220,61 +1175,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1959900140040864316, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1959900140474706014, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 1959900140707769132, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.03364185
-      objectReference: {fileID: 0}
-    - target: {fileID: 1959900140707769132, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.23623693
-      objectReference: {fileID: 0}
-    - target: {fileID: 1959900140707769132, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.7924528
-      objectReference: {fileID: 0}
-    - target: {fileID: 2069491672830333144, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2069491672830333144, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2069491672830333144, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6531424226389968495, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.0017325459
-      objectReference: {fileID: 0}
-    - target: {fileID: 6531424226389968495, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 17.078955
-      objectReference: {fileID: 0}
-    - target: {fileID: 6531424226389968495, guid: 586480b8bb47ec74ab1ed31c423d574a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -13.261847
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 586480b8bb47ec74ab1ed31c423d574a, type: 3}

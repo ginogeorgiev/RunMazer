@@ -736,23 +736,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b25e5f8b6417d40b94a216b40572da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  godMode: 1
+  godMode: 0
   dieMfDie: 0
   healthBar: {fileID: 0}
   hungerBar: {fileID: 0}
   staminaBar: {fileID: 0}
   maxHunger: 100
-  maxHealth: 100
+  maxHealth: 200
   maxStamina: 100
   currentHealth: 0
   currentHunger: 0
   currentStamina: 0
-  depletingRateHealth: 5
-  depletingRateHunger: 3
-  depletingRateStamina: 10
-  fillRateBase: 20
-  restWhenIdle: 4
-  restWhenWalking: 2
+  depletingRateHealth: 1
+  depletingRateHunger: 1
+  depletingRateStamina: 2
+  fillRateBase: 25
+  restWhenIdle: 20
+  restWhenWalking: 5
 --- !u!143 &1725898018950875758
 CharacterController:
   m_ObjectHideFlags: 0
@@ -766,7 +766,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2.3
   m_Radius: 0.29
-  m_SlopeLimit: 45
+  m_SlopeLimit: 70
   m_StepOffset: 0.3
   m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
@@ -966,7 +966,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959900140474706001}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2069491672830333144}
@@ -1044,7 +1044,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8a70d2afd084fd84aa17c7e13df87409, type: 3}
-  m_Color: {r: 0, g: 0.12359953, b: 1, a: 0.7529412}
+  m_Color: {r: 0.03364185, g: 0.23623693, b: 0.7924528, a: 0.7529412}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3578,17 +3578,17 @@ PrefabInstance:
     - target: {fileID: 4726159960144458664, guid: 4f9b143fba8087143810d6bdb6699a0f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0017324267
+      value: 0.0017325459
       objectReference: {fileID: 0}
     - target: {fileID: 4726159960144458664, guid: 4f9b143fba8087143810d6bdb6699a0f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.788953
+      value: 17.078955
       objectReference: {fileID: 0}
     - target: {fileID: 4726159960144458664, guid: 4f9b143fba8087143810d6bdb6699a0f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.261846
+      value: -13.261847
       objectReference: {fileID: 0}
     - target: {fileID: 4726159960144458664, guid: 4f9b143fba8087143810d6bdb6699a0f,
         type: 3}
