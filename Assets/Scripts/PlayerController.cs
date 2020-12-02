@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 			transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
 		}
 
-		bool running = Input.GetKey (KeyCode.LeftShift) && CoreBars.PlayerCanRun();
+		bool running = Input.GetKey (KeyCode.LeftShift) && CoreBars.PlayerCanRun;
 		float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
 		currentSpeed = Mathf.SmoothDamp (currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
 
@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour {
 
 		//player is moving but shift isn't held down
 		//or shift is held down but stamina is depleted
-		if (!Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.LeftShift) && !CoreBars.PlayerCanRun()))
+		if (!Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.LeftShift) && !CoreBars.PlayerCanRun))
 		{
 			PlayerStateMachine.GetInstance().ChangeState(PlayerStateMachine.State.IsWalking);
 			return;
