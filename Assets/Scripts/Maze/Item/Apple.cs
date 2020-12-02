@@ -10,7 +10,7 @@ namespace Maze.Item
     /// </summary>
     public class Apple : MazeItem
     {
-        [SerializeField] private float healthExtensionEffect = 0.2f;
+        [SerializeField] private float healthExtensionEffect = 20f;
         
         protected override void EnterEffect()
         {
@@ -23,7 +23,7 @@ namespace Maze.Item
             
             size.localScale = new Vector3(size.localScale.x * (healthExtensionEffect + 1), size.localScale.y, size.localScale.z);
 
-            CoreBars.HealthCore.MaxValue *= (healthExtensionEffect + 1);
+            CoreBars.HealthCore.MaxValue += healthExtensionEffect;
             //current value is increased by extension value
             CoreBars.HealthCore.CurrentValue += CoreBars.HealthCore.MaxValue * healthExtensionEffect;
 
