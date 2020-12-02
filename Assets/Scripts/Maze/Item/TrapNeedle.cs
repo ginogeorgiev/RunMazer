@@ -13,29 +13,59 @@ namespace Maze.Item
     /// </summary>
     public class TrapNeedle : MazeItem
     {
-        [SerializeField] private float damageToPlayer = 30.0f;
+        [SerializeField] private float delayInSec = 0.3f;
         private Animation anim;
+        private bool isExposeCoroutineExecuting = false;
+        private bool isHideCoroutineExecuting = false;
+        private bool supposedToHide = false;
         private void Start()
         {
             anim = GetComponent<Animation>();
             anim.wrapMode = WrapMode.Once;
             
         }
-        
+
+        private void Update()
+        {
+            if(supposedToHide && !isExposeCoroutineExecuting)
+            {
+                StartCoroutine(HideNeedles());
+                supposedToHide = false;
+            }
+        }
+
         protected override void EnterEffect()
         {
-            anim.Play("Anim_TrapNeedle_Show");
-            CoreBars.HealthCore.CurrentValue -= damageToPlayer;
+            StartCoroutine(ExposeNeedles());
         }
 
         protected override void ExitEffect()
         {
-            anim.Play("Anim_TrapNeedle_Hide");
+            supposedToHide = true;
         }
 
         protected override void StayEffect()
         {
-            
+        }
+        //needles take delay in seconds time to get exposed
+        IEnumerator ExposeNeedles()
+        {
+            if(isExposeCoroutineExecuting)
+                yield break;
+            isExposeCoroutineExecuting = true;
+            yield return new WaitForSeconds(delayInSec);
+            anim.Play("Anim_TrapNeedle_Show");
+            isExposeCoroutineExecuting = false;
+        }
+        //needles take delay in seconds * 2 time to hide after exiting the trap
+        IEnumerator HideNeedles()
+        {
+            if(isHideCoroutineExecuting)
+                yield break;
+            isHideCoroutineExecuting = true;
+            yield return new WaitForSeconds(delayInSec*2);
+            anim.Play("Anim_TrapNeedle_Hide");
+            isHideCoroutineExecuting = false;
         }
     }
 }

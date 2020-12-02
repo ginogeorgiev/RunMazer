@@ -90,7 +90,8 @@ GameObject:
   - component: {fileID: 604303264682545924}
   - component: {fileID: 604303264685970212}
   - component: {fileID: 604303264684839396}
-  - component: {fileID: 604303265968086658}
+  - component: {fileID: 7995973296299552573}
+  - component: {fileID: 3947244755992581492}
   m_Layer: 0
   m_Name: Needle
   m_TagString: Untagged
@@ -159,8 +160,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &604303265968086658
-MeshCollider:
+--- !u!65 &7995973296299552573
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -169,10 +170,23 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: a07105af0bc77a942ac71b139b8f4c4b, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.8459686, y: 0.5085304, z: 0.8409822}
+  m_Center: {x: 0.002094936, y: 0.2457958, z: 0.001265238}
+--- !u!114 &3947244755992581492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604303264682643236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61d42c40be894909bf342fc86f662114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 0
+  damageToPlayer: 25
 --- !u!1 &604303264682643238
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +215,7 @@ Transform:
   m_GameObject: {fileID: 604303264682643238}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 6.6918, y: 6.6918, z: 6.6918}
+  m_LocalScale: {x: 9, y: 9, z: 9}
   m_Children:
   - {fileID: 604303264682545924}
   - {fileID: 604303264682545920}
@@ -219,8 +233,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.04923797, z: 1}
-  m_Center: {x: 0, y: 0.027744243, z: 0}
+  m_Size: {x: 1, y: 0.091047406, z: 1}
+  m_Center: {x: 0, y: 0.04864896, z: 0}
 --- !u!111 &604303264662585145
 Animation:
   m_ObjectHideFlags: 0
@@ -253,4 +267,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   count: 10
-  damageToPlayer: 30
+  delayInSec: 0.3
