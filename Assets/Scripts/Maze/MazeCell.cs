@@ -1,4 +1,5 @@
-﻿using Maze;
+﻿using System.Collections.Generic;
+using Maze;
 using UnityEngine;
 
 public class MazeCell : MonoBehaviour
@@ -8,6 +9,7 @@ public class MazeCell : MonoBehaviour
     private bool visited;
     private int path;
     private bool hasItem;
+    public List<GameObject> buttresses = new List<GameObject>();
 
     //************** GETTERS & SETTERS ************//
     public void SetCoordinates(int x, int y)

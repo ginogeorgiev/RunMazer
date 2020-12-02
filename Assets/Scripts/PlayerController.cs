@@ -120,7 +120,6 @@ public class PlayerController : MonoBehaviour {
 				isInBase = true;
 				break;
 			case "Exit":
-				if (ScoreManager.Instance.GetFragmentScore() == ScoreManager.Instance.GetMaxFragments())
 				{
 					this.PlayerWonGame();
 					//destroy is temporary

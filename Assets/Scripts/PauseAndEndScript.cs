@@ -80,6 +80,7 @@ public class PauseAndEndScript : MonoBehaviour
             {
                 Time.timeScale = 0;
                 endText.text = "You Lose!";
+                playAgainText.text = "Play Again";
                 bgImg.color = new Color(0, 0, 1, 0.5f);
                 miniMap.GetComponent<MiniMapUIScript>().enabled = false;
                 pauseAndEndPanel.SetActive(true);
@@ -92,6 +93,7 @@ public class PauseAndEndScript : MonoBehaviour
             {
                 Time.timeScale = 0;
                 endText.text = "You Win!";
+                playAgainText.text = "Play Again";
                 bgImg.color = new Color(1, 0, 0, 0.5f);
                 miniMap.GetComponent<MiniMapUIScript>().enabled = false;
                 pauseAndEndPanel.SetActive(true);

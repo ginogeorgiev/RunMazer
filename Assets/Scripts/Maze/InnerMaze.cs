@@ -35,7 +35,29 @@ namespace Maze
                         CreateWall(GetCell(x, y), GetCell(x + 1, y), MazeDirection.North);
                         CreateWall(GetCell(x, y), GetCell(x - 1, y), MazeDirection.South);
                         CreateWall(GetCell(x, y), GetCell(x, y - 1), MazeDirection.East);
-                        CreateWall(GetCell(x, y), GetCell(x + 1, y + 1), MazeDirection.West);
+                        CreateWall(GetCell(x, y), GetCell(x, y + 1), MazeDirection.West);
+                    }
+                    else
+                    {
+                        if (x == (size.x - sizeBase.x) / 2)
+                        {
+                            CreateWall(GetCell(x, y), GetCell(x - 1, y), MazeDirection.South);
+                        }
+
+                        if (x == (size.x - sizeBase.x) / 2 + sizeBase.x - 1)
+                        {
+                            CreateWall(GetCell(x, y), GetCell(x + 1, y), MazeDirection.North);
+                        }
+
+                        if (y == (size.y - sizeBase.y) / 2)
+                        {
+                            CreateWall(GetCell(x, y), GetCell(x, y - 1), MazeDirection.East);
+                        }
+
+                        if (y == (size.y - sizeBase.y) / 2 + sizeBase.y - 1)
+                        {
+                            CreateWall(GetCell(x, y), GetCell(x, y + 1), MazeDirection.West);
+                        }
                     }
                 }
             }
@@ -53,6 +75,8 @@ namespace Maze
 
             DestroyWall(GetCell(Random.Range(0, size.x / 2 - 1), size.y - 1).GetEdge(MazeDirection.West));
             DestroyWall(GetCell(Random.Range(size.x / 2 + 1, size.x - 1), size.y - 1).GetEdge(MazeDirection.West));
+
+            RemoveButtresses();
         }
 
 
@@ -92,6 +116,7 @@ namespace Maze
             cell.transform.GetChild(0).localScale = new Vector3(sizeCells * 0.1f, 1, sizeCells * 0.1f);
             cell.transform.localPosition =
                 new Vector3(sizeCells * (x - size.x / 2), -1f, sizeCells * (y - size.y / 2));
+            AddButtresses(cell);
             cells[x, y] = cell;
         }
 
@@ -103,6 +128,7 @@ namespace Maze
             return x >= (size.x - sizeBase.x) / 2 && x < (size.x - sizeBase.x) / 2 + sizeBase.x &&
                    y >= (size.y - sizeBase.y) / 2 && y < (size.y - sizeBase.y) / 2 + sizeBase.y;
         }
+
 
         /// <summary>
         /// Variant of Hunt-and-Kill algorithm
@@ -145,7 +171,7 @@ namespace Maze
             }
         }
 
-        
+
         /// <summary>
         /// Calculates unit size with size and sizeCells of innerMaze
         /// </summary>
@@ -154,7 +180,7 @@ namespace Maze
         {
             return new Vector2(size.x * sizeCells, size.y * sizeCells);
         }
-        
+
         public override int GetCellAmount()
         {
             return size.x * size.y;
@@ -166,6 +192,15 @@ namespace Maze
             int cellY = cellNumber / size.x;
             int cellX = cellNumber - cellY * size.x;
             return GetCell(cellX, cellY);
+        }
+
+        public override void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction)
+        {
+            MazeCellWall wall = Instantiate(wallPrefab) as MazeCellWall;
+            wall.Initialize(cell, otherCell, direction);
+            Transform childTransform = wall.transform.GetChild(0);
+            wall.transform.GetChild(0).localScale = childTransform.localScale + new Vector3(0, 0, -1);
+            wall.transform.GetChild(0).localPosition = new Vector3(sizeCells * 0.5f - 0.25f, 1.5f, 0);
         }
     }
 }

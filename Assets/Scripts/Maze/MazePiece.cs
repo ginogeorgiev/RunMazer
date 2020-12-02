@@ -7,28 +7,23 @@ namespace Maze
     {
         [SerializeField] protected Vector2Int size = Vector2Int.zero;
         [SerializeField] protected float sizeCells = 0;
-        [SerializeField] private float sizeWall = 0;
+        [SerializeField] protected float wallScale = 0;
         [SerializeField] protected MazeCell cellPrefab = null;
-        [SerializeField] private MazeCellWall wallPrefab = null;
+        [SerializeField] protected MazeCellWall wallPrefab = null;
+        [SerializeField] protected GameObject buttressPrefab = null;
 
         protected MazeCell[,] cells;
         protected MazeCell currentCell;
-    
+
         public abstract void Generate();
-    
+
         public abstract void CreateCell(int x, int y);
 
         /// <summary>
         /// Instantiates, Initializes and Transfroms wall to fit between <param name="cell"></param> and <param name="otherCell"></param>
         /// </summary>
         /// <param name="direction">of the wall</param>
-        public void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction)
-        {
-            MazeCellWall wall = Instantiate(wallPrefab) as MazeCellWall;
-            wall.Initialize(cell, otherCell, direction);
-            wall.transform.localScale = new Vector3(1, sizeWall, sizeCells + 1);
-            wall.transform.GetChild(0).localPosition = new Vector3(sizeCells * 0.5f, 0, 0);
-        }
+        public abstract void CreateWall(MazeCell cell, MazeCell otherCell, MazeDirection direction);
 
         public abstract void HuntAndKill();
 
@@ -140,12 +135,13 @@ namespace Maze
             if (wall != null && !Application.isEditor)
             {
                 GameObject.Destroy(wall.gameObject);
-            }else if (wall != null && Application.isEditor)
+            }
+            else if (wall != null && Application.isEditor)
             {
                 GameObject.DestroyImmediate(wall.gameObject);
             }
         }
-    
+
         public MazeCell GetCell(int x, int y)
         {
             if (x >= size.x || x < 0 || y >= size.y || y < 0)
@@ -155,7 +151,51 @@ namespace Maze
 
             return cells[x, y];
         }
-        
+
+
+        protected void AddButtresses(MazeCell cell)
+        {
+            for (int i = 0; i < MazeDirections.Count; i++)
+            {
+                GameObject buttress = Instantiate(buttressPrefab, cell.transform, false);
+                buttress.transform.GetChild(0).localPosition =
+                    new Vector3(sizeCells / 2 - 0.25f, 1.5f, sizeCells / 2 - 0.25f);
+                buttress.transform.localScale = new Vector3(1, wallScale, 1);
+                buttress.transform.localRotation = MazeDirections.ToRotation((MazeDirection) i);
+                cell.buttresses.Add(buttress);
+            }
+        }
+
+        protected void RemoveButtresses()
+        {
+            for (int x = 0; x < size.x - 1; x++)
+            {
+                for (int y = 0; y < size.y - 1; y++)
+                {
+                    if (IsIsolatedButtress(x, y))
+                    {
+                        Destroy(GetCell(x, y).buttresses[0]);
+                        Destroy(GetCell(x, y + 1).buttresses[1]);
+                        Destroy(GetCell(x + 1, y + 1).buttresses[2]);
+                        Destroy(GetCell(x + 1, y).buttresses[3]);
+                    }
+                }
+            }
+        }
+
+        private bool IsIsolatedButtress(int x, int y)
+        {
+            if (GetCell(x, y).GetEdge(MazeDirection.North) == null &&
+                GetCell(x, y).GetEdge(MazeDirection.West) == null &&
+                GetCell(x + 1, y + 1).GetEdge(MazeDirection.South) == null &&
+                GetCell(x + 1, y + 1).GetEdge(MazeDirection.East) == null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public abstract int GetCellAmount();
 
         /// <summary>
@@ -165,7 +205,7 @@ namespace Maze
         /// <param name="cellNumber">cell id</param>
         /// <returns>MazeCell placed at calculated x and y coords</returns>
         public abstract MazeCell GetCell(int cellNumber);
-        
+
         public Vector2Int Size => size;
     }
 }

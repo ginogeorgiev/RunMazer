@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -75,5 +76,14 @@ public class GameManager : MonoBehaviour
     {
         GameStateMachine.GetInstance().SetState(GameStateMachine.State.MainMenu);
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ExitButton()
+    {
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }
