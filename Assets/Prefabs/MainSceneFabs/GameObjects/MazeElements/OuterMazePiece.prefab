@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6a63d7b859ab944a2b176818149f9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 25, y: 25}
+  size: {x: 15, y: 15}
   sizeCells: 20
   wallScale: 2
   cellPrefab: {fileID: -5741930653846233985, guid: 592adbeeadef18b45bc623be6d236f1a,

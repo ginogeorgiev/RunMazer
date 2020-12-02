@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour
     //we have to connect this to the amount of fragments spawned later.
     [SerializeField] private int maxFragments;
     [SerializeField] private TextMeshProUGUI fragmentText;
-
+    [SerializeField] private GameObject door;
     public static ScoreManager Instance
     {
         get
@@ -71,7 +71,6 @@ public class ScoreManager : MonoBehaviour
     //adds fragment
     public void AddFragmentScore()
     {
-        
         if (fragmentScore >= GetMaxFragments())
         {
             return;
@@ -79,6 +78,11 @@ public class ScoreManager : MonoBehaviour
         fragmentScore++;
         Debug.Log(fragmentScore);
         fragmentText.text = "Fragment: " + fragmentScore + "/"+GetMaxFragments();
+        
+        if (ScoreManager.Instance.GetFragmentScore() == ScoreManager.Instance.GetMaxFragments())
+        {
+            door.transform.Rotate(new Vector3(90,0,0));
+        }
     }
 
     public int GetFragmentScore()
