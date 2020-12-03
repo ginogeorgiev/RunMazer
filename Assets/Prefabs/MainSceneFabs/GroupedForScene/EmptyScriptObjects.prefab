@@ -102,6 +102,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2787971724702449262, guid: 65d4c95a9958d9c45af63892047f1cce,
+        type: 3}
+      propertyPath: fragmentText
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65d4c95a9958d9c45af63892047f1cce, type: 3}
 --- !u!4 &3483056889215797885 stripped
@@ -122,6 +127,12 @@ PrefabInstance:
       propertyPath: mazePrefab
       value: 
       objectReference: {fileID: -8156789288879656817, guid: 6abd07a44590a34489d13aa0f6935a15,
+        type: 3}
+    - target: {fileID: 793175514982325002, guid: 74deef1f984bb6a4284ba59d4b519c73,
+        type: 3}
+      propertyPath: mazeItemPrefabList.Array.data[5]
+      value: 
+      objectReference: {fileID: 4340259092748898534, guid: 11959a4ddf7dff6478d9b6991fb3fd97,
         type: 3}
     - target: {fileID: 793175514982325004, guid: 74deef1f984bb6a4284ba59d4b519c73,
         type: 3}
@@ -257,6 +268,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4298547297968849727, guid: c8ae52f701a46cf4f805ffe454ecc1ab,
+        type: 3}
+      propertyPath: pauseAndEndPanel
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4298547297968849727, guid: c8ae52f701a46cf4f805ffe454ecc1ab,
+        type: 3}
+      propertyPath: playAgainText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4298547297968849727, guid: c8ae52f701a46cf4f805ffe454ecc1ab,
+        type: 3}
+      propertyPath: miniMap
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8ae52f701a46cf4f805ffe454ecc1ab, type: 3}
@@ -407,6 +433,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6320622896485669255, guid: d8a194bf364cb1a41b7e7d4b6f4ef1e0,
+        type: 3}
+      propertyPath: usedScene
+      value: GinoScene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8a194bf364cb1a41b7e7d4b6f4ef1e0, type: 3}
