@@ -45,12 +45,13 @@ namespace Maze.Item
             get => count;
             set => count = value;
         }
-
         public void ReplaceItem()
         {
+            transform.parent.GetComponent<MazeCell>().HasItem = false;
             MazeCell cell = ItemGenerator.GetRandomEmptyCell();
             transform.parent = cell.transform;
             transform.localPosition = new Vector3(0, transform.localPosition.y, 0);
+            cell.HasItem = true;
         }
     }
 }
