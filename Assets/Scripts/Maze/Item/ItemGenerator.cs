@@ -7,16 +7,16 @@ namespace Maze.Item
 {
     public class ItemGenerator : MonoBehaviour
     {
-        private Maze maze;
+        private static Maze maze;
 
         /// <summary>
         /// Generates all items according to their generation logic
         /// </summary>
         /// <param name="maze">to place items into</param>
         /// <param name="mazeItemPrefabList">Item Prefabs to be instantiated</param>
-        public void Generate(global::Maze.Maze maze, List<MazeItem> mazeItemPrefabList)
+        public static void Generate(Maze maze, List<MazeItem> mazeItemPrefabList)
         {
-            this.maze = maze;
+            ItemGenerator.maze = maze;
             foreach (MazeItem mazeItemPrefab in mazeItemPrefabList)
             {
                 switch (mazeItemPrefab)
@@ -38,7 +38,7 @@ namespace Maze.Item
         /// </summary>
         /// <param name="fragment">Prefab to be instantiated</param>
         /// <exception cref="Exception">Thrown when cell is already occupied by another item</exception>
-        private void GenerateFragments(Fragment fragment)
+        private static void GenerateFragments(Fragment fragment)
         {
             foreach (OuterMazePiece outerMazePiece in maze.OuterMazePieces)
             {
@@ -62,12 +62,23 @@ namespace Maze.Item
         /// Places <see cref="MazeItem.count"/> times
         /// </summary>
         /// <param name="mazeItemPrefab">Item prefab to be instantiated</param>
-        private void GenerateRandomInMaze(MazeItem mazeItemPrefab)
+        private static void GenerateRandomInMaze(MazeItem mazeItemPrefab)
         {
             for (int i = 0; i < mazeItemPrefab.Count; i++)
             {
                 int randomCellNumber = Random.Range(0, maze.CellAmount - 1);
-                MazeCell cell;
+                MazeCell cell = GetRandomEmptyCell();
+                MazeItem item = Instantiate(mazeItemPrefab, cell.transform, false);
+                cell.HasItem = true;
+            }
+        }
+
+        public static MazeCell GetRandomEmptyCell()
+        {
+            MazeCell cell = null;
+            while (cell == null || cell.HasItem || cell is MazeCellBase)
+            {
+                int randomCellNumber = Random.Range(0, maze.CellAmount - 1);
                 if (randomCellNumber < maze.InnerMaze.GetCellAmount())
                 {
                     cell = maze.InnerMaze.GetCell(randomCellNumber);
@@ -79,25 +90,9 @@ namespace Maze.Item
                     randomCellNumber -= mazePieceNumber * maze.OuterMazePieces[0].GetCellAmount();
                     cell = maze.OuterMazePieces[mazePieceNumber].GetCell(randomCellNumber);
                 }
-
-                try
-                {
-                    if (!cell.HasItem)
-                    {
-                        MazeItem item = Instantiate(mazeItemPrefab, cell.transform, false);
-                        cell.HasItem = true;
-                    }
-                    else
-                    {
-                        i -= 1;
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("RandomCellCalculation was not successful. Modify GenerateRandomInMaze");
-                    throw;
-                }
             }
+
+            return cell;
         }
     }
 }
