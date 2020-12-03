@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   count: 1
-  staminaExtensionEffect: 100
+  staminaExtensionEffect: 20
 --- !u!65 &7238502306756873625
 BoxCollider:
   m_ObjectHideFlags: 0

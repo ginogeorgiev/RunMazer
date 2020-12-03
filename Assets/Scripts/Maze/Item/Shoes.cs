@@ -9,7 +9,7 @@ namespace Maze.Item
     /// </summary>
     public class Shoes : MazeItem
     {
-        [SerializeField] private float staminaExtensionEffect = 100f;
+        [SerializeField] private float staminaExtensionEffect = 20f;
 
         protected override void EnterEffect()
         {
@@ -19,11 +19,11 @@ namespace Maze.Item
 
             //moves bar to the right by half the extension percentage
             size.position = new Vector3(
-                size.position.x + size.sizeDelta.x * (staminaExtensionEffect / (2 * CoreBars.StaminaCore.MaxValue)),
+                size.position.x + size.sizeDelta.x * (staminaExtensionEffect * 0.01f) / 2,
                 size.position.y, size.position.z);
 
             size.localScale = new Vector3(
-                size.localScale.x * ((staminaExtensionEffect / CoreBars.HungerCore.MaxValue) + 1), size.localScale.y,
+                size.localScale.x + staminaExtensionEffect * 0.01f, size.localScale.y,
                 size.localScale.z);
 
             CoreBars.StaminaCore.MaxValue += staminaExtensionEffect;

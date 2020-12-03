@@ -19,11 +19,11 @@ namespace Maze.Item
 
             //moves bar to the right by half the extension percentage
             size.position = new Vector3(
-                size.position.x + size.sizeDelta.x * (healthExtensionEffect / (2 * CoreBars.HealthCore.MaxValue)),
+                size.position.x + size.sizeDelta.x * (healthExtensionEffect * 0.01f) / 2,
                 size.position.y, size.position.z);
 
             size.localScale = new Vector3(
-                size.localScale.x * ((healthExtensionEffect / CoreBars.HealthCore.MaxValue) + 1), size.localScale.y,
+                size.localScale.x + healthExtensionEffect * 0.01f, size.localScale.y,
                 size.localScale.z);
 
             CoreBars.HealthCore.MaxValue += healthExtensionEffect;
@@ -35,6 +35,7 @@ namespace Maze.Item
 
         protected override void ExitEffect()
         {
+            
         }
 
         protected override void StayEffect()
