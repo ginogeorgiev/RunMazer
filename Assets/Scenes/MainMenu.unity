@@ -340,10 +340,22 @@ PrefabInstance:
     - target: {fileID: 6320622896485669255, guid: d8a194bf364cb1a41b7e7d4b6f4ef1e0,
         type: 3}
       propertyPath: usedScene
-      value: GinoScene
+      value: FinalScene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8a194bf364cb1a41b7e7d4b6f4ef1e0, type: 3}
+--- !u!114 &969942571 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6320622896485669255, guid: d8a194bf364cb1a41b7e7d4b6f4ef1e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 969942570}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05240174030235f48af2a899560b9b57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1073051346418748952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -495,6 +507,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MenuHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600196316047084263, guid: fd2fb1749a32b08479ba3f04a10e64cb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 969942571}
+    - target: {fileID: 4600196316047084263, guid: fd2fb1749a32b08479ba3f04a10e64cb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayGame
       objectReference: {fileID: 0}
     - target: {fileID: 9171067637314902026, guid: fd2fb1749a32b08479ba3f04a10e64cb,
         type: 3}
