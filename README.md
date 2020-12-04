@@ -17,8 +17,11 @@ Controls:
   
 
 Assets we used:
- - Dungeon Traps: https://assetstore.unity.com/packages/3d/environments/dungeons/dungeon-traps-50655 
- - Low Poly Dungeons Lite: https://assetstore.unity.com/packages/3d/environments/dungeons/low-poly-dungeons-lite-177937 
- - Low Poly Simple Nature Pack: https://assetstore.unity.com/packages/3d/environments/landscapes/low-poly-simple-nature-pack-162153
- - RPG Poly Pack Lite: https://assetstore.unity.com/packages/3d/environments/landscapes/rpg-poly-pack-lite-148410
- - Low Poly Fruit Pickups: https://assetstore.unity.com/packages/3d/props/food/low-poly-fruit-pickups-98135
+ - Traps from Dungeon Traps: https://assetstore.unity.com/packages/3d/environments/dungeons/dungeon-traps-50655 
+ - Book and Wall texture from Low Poly Dungeons Lite: https://assetstore.unity.com/packages/3d/environments/dungeons/low-poly-dungeons-lite-177937 
+ - Trees from Low Poly Simple Nature Pack: https://assetstore.unity.com/packages/3d/environments/landscapes/low-poly-simple-nature-pack-162153
+ - Base from RPG Poly Pack Lite: https://assetstore.unity.com/packages/3d/environments/landscapes/rpg-poly-pack-lite-148410
+ - Apple, Banana from Low Poly Fruit Pickups: https://assetstore.unity.com/packages/3d/props/food/low-poly-fruit-pickups-98135
+ - Potion from Fantasy Treasure Pack Lite: https://assetstore.unity.com/packages/3d/environments/fantasy/fantasy-treasure-pack-lite-80898
+ - Chicken Drumstick from FREE Casual Food Pack: https://assetstore.unity.com/packages/3d/props/food/free-casual-food-pack-mobile-vr-85884
+ - Ground Material from PBR Brick Material Free: https://assetstore.unity.com/packages/2d/textures-materials/brick/pbr-brick-material-free-161772
