@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   count: 10
-  healthExtensionEffect: 10
+  healthExtensionEffect: 20
 --- !u!65 &-9101382018932777313
 BoxCollider:
   m_ObjectHideFlags: 0
