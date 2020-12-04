@@ -693,6 +693,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8156789288879656817, guid: 6abd07a44590a34489d13aa0f6935a15,
         type: 3}
+    - target: {fileID: 2154828006803849788, guid: f34a57d6352d5c24d8300c8e203b7e32,
+        type: 3}
+      propertyPath: mazeItemPrefabList.Array.data[9]
+      value: 
+      objectReference: {fileID: 8064616058464620711, guid: 6d09e6eb6d6db5c478936e9a05445cf9,
+        type: 3}
     - target: {fileID: 2925239534285831161, guid: f34a57d6352d5c24d8300c8e203b7e32,
         type: 3}
       propertyPath: m_IsActive
