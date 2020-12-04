@@ -20,8 +20,13 @@ namespace Maze.Item
         private bool supposedToHide = false;
         private void Start()
         {
+            if (transform.parent.parent.GetComponent<OuterMazePiece>())
+            {
+                transform.localScale *= 2;
+            }
             anim = GetComponent<Animation>();
             anim.wrapMode = WrapMode.Once;
+            
             
         }
 

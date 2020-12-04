@@ -16,11 +16,18 @@ namespace Maze.Item
 
         private void Start()
         {
+            if (transform.parent.parent.GetComponent<OuterMazePiece>())
+            {
+                transform.localScale *= 2;
+            }
+            
             transform.localRotation = MazeDirections.ToRotation(MazeDirections.RandomValue);
             anim = GetComponent<Animation>();
             mainState = anim["Anim_AxeTrap_Play"];
             anim.wrapMode = WrapMode.Loop;
             mainState.speed = animSpeed;
+            
+            
         }
  
         protected override void EnterEffect()
