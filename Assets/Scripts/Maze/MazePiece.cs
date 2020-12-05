@@ -134,6 +134,7 @@ namespace Maze
         {
             if (wall != null && !Application.isEditor)
             {
+                wall.cell.SetEdge(wall.direction, null);
                 GameObject.Destroy(wall.gameObject);
             }
             else if (wall != null && Application.isEditor)
@@ -175,13 +176,18 @@ namespace Maze
                     if (IsIsolatedButtress(x, y))
                     {
                         Destroy(GetCell(x, y).buttresses[0]);
+                        GetCell(x, y).buttresses[0] = null;
                         Destroy(GetCell(x, y + 1).buttresses[1]);
+                        GetCell(x, y + 1).buttresses[1] = null;
                         Destroy(GetCell(x + 1, y + 1).buttresses[2]);
+                        GetCell(x + 1, y + 1).buttresses[2] = null;
                         Destroy(GetCell(x + 1, y).buttresses[3]);
+                        GetCell(x + 1, y).buttresses[3] = null;
                     }
                 }
             }
         }
+
 
         private bool IsIsolatedButtress(int x, int y)
         {
