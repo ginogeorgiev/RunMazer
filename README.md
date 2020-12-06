@@ -11,7 +11,7 @@ Goal of the game is to escape the maze. For that the player has to trigger four 
 
 Controls:
  - W,A,S,D to move around
- - M to maximize the Mini Map
+ - M to maximize the mini map
  - Esc to pause and resume the game
  - Shift to sprint 
   
