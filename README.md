@@ -7,7 +7,7 @@ The concept for it is located here: https://miro.com/app/board/o9J_kiuhw0A=/
 
 And the Roadmap can be found here: https://trello.com/b/75L8b1JK/roguelike-tacos
 
-Goal of the game is to escape the maze. For that the player has to trigger four fragments and then return to the base and leave the maze by going through the trap door. But be careful, the maze is filled with deadly traps. Luckily, someone before you left food and useful items in the maze, which will help you survive this nightmare.
+Goal of the game is to escape the maze. For that the player has to trigger four switches and then return to the base and leave the maze by going through the trap door. But be careful, the maze is filled with deadly traps. Luckily, someone before you left food and useful items in the maze, which will help you survive this nightmare.
 
 Controls:
  - W,A,S,D to move around
